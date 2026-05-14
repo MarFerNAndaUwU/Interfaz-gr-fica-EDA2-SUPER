@@ -1,3 +1,4 @@
+import './App.css';
 import React from 'react';
 
 function App() {
@@ -21,8 +22,24 @@ function App() {
           <a className="nav-item nav-link link-body-emphasis" href="#">Algoritmos</a>
           <a className="nav-item nav-link link-body-emphasis" href="#">Documentación</a>
           <a className="nav-item nav-link link-body-emphasis" href="#">Nosotros</a>
+          <a className="nav-item nav-link link-body-emphasis" href="#">Ponganse a chambear cabrones</a>
+
         </nav>
       </div>
+      
+      <div className="text-center"> {/* Esto centra la imagen */}
+  <img 
+    src="https://static.wikia.nocookie.net/aesthetics/images/5/5f/Asadal_design_graphics.jpg" 
+    alt="Asadal Design" 
+    className="rounded shadow-lg mb-4" 
+    style={{ 
+      width: 'auto',        /* No deja que se estire a la fuerza */
+      maxWidth: '600px',    /* Tú puedes bajar este número (ej. 500px) para que se vea menos pixeleada */
+      height: 'auto',       /* Mantiene la proporción original */
+      border: '4px solid rgba(255, 255, 255, 0.7)' 
+    }} 
+  />
+</div>
 
       {/* Sección Destacada (Lo que hará el Miembro 3) */}
       <div className="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
