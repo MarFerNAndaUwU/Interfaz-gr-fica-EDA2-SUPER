@@ -3,38 +3,32 @@
   --fa-glass: rgba(255, 255, 255, 0.4);
 }
 
-body {
-  /* Esto pone el fondo azul/verde degradado */
-  background: linear-gradient(135deg, hsl(119, 75%, 69%) 0%, #5a8eff 100%) !important;
-  background-attachment: fixed;
-  min-height: 100vh;
+html {
+  scroll-behavior: smooth;
 }
-
-.glass-card {
-  /* Esto hace el efecto de cristal/vidrio */
-  background: var(--fa-glass) !important;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.6) !important;
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-/* ========================= */
-/* ESTILOS GENERALES */
-/* ========================= */
 
 body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  background: linear-gradient(
-    135deg,
-    #6be675,
-    #7fd3c8
-  );
-
+  /* Fondo Frutiger Aero unificado */
+  background: linear-gradient(135deg, hsl(119, 75%, 69%) 0%, #5a8eff 100%) !important;
+  background-attachment: fixed;
   min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ========================= */
+/* TARJETAS GLASS */
+/* ========================= */
+
+.glass-card {
+  background: var(--fa-glass) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
 .container {
@@ -44,19 +38,7 @@ body {
 }
 
 /* ========================= */
-/* TARJETAS GLASS */
-/* ========================= */
-
-.glass-card {
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-}
-
-/* ========================= */
-/* MENU */
+/* MENU PANTALLA COMPLETA */
 /* ========================= */
 
 .menu-logo {
@@ -73,7 +55,6 @@ body {
 }
 
 /* CHECKBOX OCULTO */
-
 .menu-icon:checked,
 .menu-icon:not(:checked) {
   position: absolute;
@@ -81,7 +62,6 @@ body {
 }
 
 /* BOTON HAMBURGUESA */
-
 .menu-icon + label {
   position: fixed;
   top: 25px;
@@ -92,8 +72,7 @@ body {
   cursor: pointer;
 }
 
-/* LINEAS */
-
+/* LINEAS DEL BOTON */
 .menu-icon + label::before,
 .menu-icon + label::after {
   content: '';
@@ -105,19 +84,16 @@ body {
   transition: 0.3s;
 }
 
-/* LINEA SUPERIOR */
-
 .menu-icon + label::before {
   top: 10px;
   box-shadow: 0 10px 0 black;
 }
 
-/* LINEA INFERIOR */
 .menu-icon + label::after {
   top: 30px;
 }
 
-/* MENU */
+/* CAJA DEL MENU */
 .menu-nav {
   position: fixed;
   top: 20px;
@@ -140,7 +116,7 @@ body {
   border-radius: 20px;
 }
 
-/* LISTA */
+/* LISTA DE ENLACES */
 .menu-nav ul {
   list-style: none;
   padding: 55px 0 0 0;
@@ -148,12 +124,10 @@ body {
   text-align: center;
 }
 
-/* ITEMS */
 .menu-nav ul li {
   margin: 12px 0;
 }
 
-/* LINKS */
 .menu-nav ul li a {
   text-decoration: none;
   color: black;
@@ -166,8 +140,7 @@ body {
   color: #0d6efd;
 }
 
-/* X */
-
+/* EFECTO X PARA CERRAR */
 .menu-icon:checked + label::before {
   top: 18px;
   box-shadow: none;
@@ -180,44 +153,23 @@ body {
 }
 
 /* ========================= */
-/* TITULOS */
+/* TITULOS, IMAGEN Y CHAT */
 /* ========================= */
 
 .blog-header-logo {
   font-size: 3rem;
 }
 
-/* ========================= */
-/* IMAGEN */
-/* ========================= */
-
 .main-image {
-  max-width: 750px;
+  max-width: 600px;
   width: 100%;
   height: auto;
   border: 4px solid rgba(255,255,255,0.7);
 }
-
-/* ========================= */
-/* CHAT */
-/* ========================= */
 
 .chat-container {
   height: 320px;
   overflow-y: scroll;
   background: rgba(255,255,255,0.6);
   backdrop-filter: blur(8px);
-}
-/* SCROLL SUAVE */
-
-html {
-  scroll-behavior: smooth;
-}
-/* TAMAÑO DE IMAGEN */
-
-.main-image {
-  max-width: 600px;
-  width: auto;
-  height: auto;
-  border: 4px solid rgba(255,255,255,0.7);
 }
