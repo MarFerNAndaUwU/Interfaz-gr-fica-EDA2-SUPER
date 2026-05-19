@@ -140,24 +140,32 @@ body {
 /* Título Principal */
 .main-title {
 
-  font-size: 70px;
+  /* 1. Tipografía estilizada, gruesa y muy limpia */
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
 
-  font-weight: 900;
+  font-size: 72px;
+
+  font-weight: 800;
 
   line-height: 0.95;
 
   margin-top: 15px;
 
-  background:
-    linear-gradient(to bottom, #ffffff, #9dd7ff, #3378ff);
+  letter-spacing: -1px; /* Junta un poco las letras como en los logos de Windows Vista */
+
+  /* 2. El degradado de gel fluido brillante */
+  background: linear-gradient(to bottom, #bbf0ff 0%, #2bb2ff 45%, #0056d6 100%);
 
   -webkit-background-clip: text;
 
   -webkit-text-fill-color: transparent;
 
-  text-shadow:
-    0 0 10px rgba(255,255,255,0.5),
-    0 4px 20px rgba(0,0,0,0.15);
+  /* 3. El truco maestro: Doble sombra */
+  /* La primera capa blanca simula el brillo de la luz solar en el borde del cristal. */
+  /* La segunda capa oscura le da profundidad para que flote sobre el fondo. */
+  text-shadow: 
+    0px 2px 3px rgba(255, 255, 255, 0.8), 
+    0px 4px 12px rgba(0, 86, 214, 0.25);
 }
 
 /* Subtítulo */
@@ -591,12 +599,14 @@ body {
   }
 
 }
+
 /* --- Paleta de Colores y Fondo General Frutiger Aero --- */
 body {
-  background: linear-gradient(135deg, #74ebe1 0%, #8bcbf4 40%, #a0f199 100%);
-  background-attachment: fixed;
+  /* 🍏 MODIFICADO: Eliminamos el linear-gradient plano que tapaba el fondo para que no actúe como pared sólida */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #1a3a5f;
+  position: relative;
+  z-index: 0;
 }
 
 /* --- Contenedores Estilo Cristal Brillante (Glossy Glass) --- */
@@ -609,7 +619,7 @@ body {
   backdrop-filter: blur(12px) saturate(160%);
   -webkit-backdrop-filter: blur(12px) saturate(160%);
   border: 1px solid rgba(255, 255, 255, 0.7) !important;
-  border-radius: 20px !important; /* Bordes muy redondeados característicos */
+  border-radius: 20px !important; 
   box-shadow: 0 8px 32px 0 rgba(31, 135, 240, 0.2), 
               inset 0 1px 4px rgba(255, 255, 255, 0.6) !important;
   position: relative;
@@ -628,7 +638,7 @@ body {
 }
 
 /* --- Títulos con Degradados Vibrantes --- */
-.main-title, .presentation-title, .section-title, h4 {
+.presentation-title, .section-title, h4 {
   color: #0b62a4 !important;
   font-weight: 700;
   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
@@ -636,7 +646,7 @@ body {
 
 /* --- Botones con Efecto Orbe / Gel Líquido (Glossy Buttons) --- */
 .btn-primary, .open-chat-btn, .btn-info, .btn-success, .btn-warning {
-  border-radius: 50px !important; /* Completamente ovalados */
+  border-radius: 50px !important; 
   border: 1px solid rgba(255, 255, 255, 0.4) !important;
   font-weight: 600 !important;
   text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
@@ -692,4 +702,70 @@ body {
 .form-control:focus {
   border-color: #0076de !important;
   box-shadow: 0 0 8px rgba(0, 118, 222, 0.5) !important;
+}
+
+/* --- Botón Multimedia de Música (Estilo Burbuja Glossy Frutiger Aero) --- */
+.btn-glossy-music {
+  background: linear-gradient(to bottom, #76f3ff 0%, #17b0cb 50%, #0b7f94 100%) !important;
+  border-radius: 50px !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  color: white !important;
+  font-weight: 700 !important;
+  font-size: 0.82rem;
+  padding: 4px 16px;
+  text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 
+              inset 0 -3px 8px rgba(0, 0, 0, 0.2), 
+              inset 0 2px 6px rgba(255, 255, 255, 0.6) !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-glossy-music:hover {
+  transform: scale(1.04);
+  filter: brightness(1.15);
+  box-shadow: 0 6px 12px rgba(23, 176, 203, 0.35), 
+              inset 0 2px 8px rgba(255, 255, 255, 0.8) !important;
+}
+
+.btn-glossy-music:active {
+  transform: scale(0.97);
+}
+
+/* ─── IMÁGENES LATERALES FRUTIGER AERO OTIMIZADAS ─── */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: calc((100vw - 1000px) / 2); 
+  height: 85vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: -1; 
+  pointer-events: none; 
+  opacity: 0.95; 
+  transition: opacity 0.3s ease;
+}
+
+/* Imagen para la Zona Izquierda */
+body::before {
+  left: 10px; 
+  background-image: url('https://i.pinimg.com/736x/50/15/b4/5015b46da46e226d0232d2acf49a3276.jpg') !important;
+}
+
+/* Imagen para la Zona Derecha */
+body::after {
+  right: 10px; 
+  background-image: url('https://preview.redd.it/frutiger-aero-meowl-v0-x9yz5e8a71tf1.jpg?width=640&crop=smart&auto=webp&s=6144e45e9daa41c5a6bf0ca848e43baf481cfc8a') !important;
+}
+
+/* ─── RESPONSIVE: OCULTAR EN PANTALLAS PEQUEÑAS ─── */
+@media (max-width: 1150px) {
+  body::before,
+  body::after {
+    display: none !important;
+  }
 }

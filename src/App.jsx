@@ -1,8 +1,24 @@
 import './App.css';
-import React, { useState } from 'react'; // 1. Importamos useState para la "memoria"
+import React, { useState, useRef } from 'react'; // 1. Importamos useState para la "memoria"
 import miniRodri from './assets/minirodri.png';
+import musicaFondo from './assets/musica-fondo.mp3';
 
 function App() {
+
+  // --- Estados y Referencias para la Música ---
+  const [musicaActiva, setMusicaActiva] = useState(false);
+  const audioRef = useRef(null); // Nuestro "control remoto"
+
+  const controlarMusica = () => {
+    if (musicaActiva) {
+      audioRef.current.pause(); // Pausa la canción
+    } else {
+      audioRef.current.play().catch(err => {
+        console.log("El navegador bloqueó el autoplay hasta que interactúes.");
+      }); // Sube el volumen
+    }
+    setMusicaActiva(!musicaActiva); // Cambia el estado del botón
+  };
 
   // 2. Definimos el "estado". 'mensaje' es lo que se escribe, 'setMensaje' es la función para cambiarlo.
   const [mensaje, setMensaje] = useState('');
@@ -70,6 +86,9 @@ function App() {
   return (
     <div className="container py-4">
 
+      {/* 🍏 AQUÍ AGREGAMOS LA ETIQUETA DE AUDIO*/}
+      <audio ref={audioRef} src={musicaFondo} loop />
+
       {/* Encabezado Principal */}
       <header className="hero-window mb-4">
         {/* Barra tipo Windows Vista */}
@@ -78,6 +97,12 @@ function App() {
             <button className="vista-circle-btn">◀</button>
             <button className="vista-circle-btn">▶</button>
           </div>
+
+          {/* 🍏 AQUÍ COLOCAMOS EL BOTÓN MULTIMEDIA ESTILO GLOSSY */}
+          <button onClick={controlarMusica} className="btn-glossy-music px-3 py-1">
+            {musicaActiva ? '🎵 Pausar Música' : '🔇 Activar Música'}
+          </button>
+
           <div className="window-search">
             <input
               type="text"
@@ -114,15 +139,6 @@ function App() {
           <a className="nav-item nav-link vista-link" href="#">Nosotros</a>
           <a className="nav-item nav-link vista-link" href="#">¡A trabajar!</a>
         </nav>
-      </div>
-
-      {/* Imagen Principal */}
-      <div className="text-center mb-4">
-        <img
-          src="https://static.wikia.nocookie.net/aesthetics/images/5/5f/Asadal_design_graphics.jpg"
-          alt="Frutiger Aero"
-          className="hero-image"
-        />
       </div>
 
       {/* Tarjeta Principal de Presentación */}
