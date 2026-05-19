@@ -131,15 +131,36 @@ function App() {
       </header>
 
       {/* Navegación Superior */}
-      <div className="nav-scroller py-2 mb-4 vista-navbar">
-        <nav className="nav justify-content-between">
-          <a className="nav-item nav-link active vista-link" href="#">Inicio</a>
-          <a className="nav-item nav-link vista-link" href="#">Algoritmos</a>
-          <a className="nav-item nav-link vista-link" href="#">Documentación</a>
-          <a className="nav-item nav-link vista-link" href="#">Nosotros</a>
-          <a className="nav-item nav-link vista-link" href="#">¡A trabajar!</a>
-        </nav>
-      </div>
+<div className="nav-scroller py-2 mb-4 vista-navbar">
+  <nav className="nav justify-content-between px-3"> 
+    
+    <a className="nav-item nav-link active vista-link d-flex align-items-center gap-2" href="#">
+      <img src="https://img1.picmix.com/output/stamp/normal/2/8/1/9/2469182_9b42d.png" alt="Inicio" width="70" height="70" style={{ objectFit: 'contain' }} />
+      Inicio
+    </a>
+    
+    <a className="nav-item nav-link vista-link d-flex align-items-center gap-2" href="#">
+      <img src="https://www.pngall.com/wp-content/uploads/17/Frutiger-Aero-Distinctive-Type-Style-PNG.png" alt="Algoritmos" width="40" height="40" style={{ objectFit: 'contain' }} />
+      Algoritmos
+    </a>
+    
+    <a className="nav-item nav-link vista-link d-flex align-items-center gap-2" href="#">
+      <img src="https://images.icon-icons.com/991/PNG/512/Windows7_icon-icons.com_75251.png" alt="Documentación" width="32" height="32" style={{ objectFit: 'contain' }} />
+      Documentación
+    </a>
+    
+    <a className="nav-item nav-link vista-link d-flex align-items-center gap-2" href="#">
+      <img src="https://www.pngall.com/wp-content/uploads/17/Frutiger-Aero-Artistic-Font-Showcase-PNG.png" alt="Nosotros" width="70" height="70" style={{ objectFit: 'contain' }} />
+      Nosotros
+    </a>
+    
+    <a className="nav-item nav-link vista-link d-flex align-items-center gap-2" href="#">
+      <img src="https://pbs.twimg.com/media/F0v3cN-aQAECTcf.png" alt="¡A trabajar!" width="32" height="32" style={{ objectFit: 'contain' }} />
+      ¡A trabajar!
+    </a>
+
+  </nav>
+</div>
 
       {/* Tarjeta Principal de Presentación */}
       <div className="presentation-card mb-5">
