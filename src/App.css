@@ -1,8 +1,10 @@
 /* src/App.css */
+
 :root {
-  --fa-glass: rgba(255, 255, 255, 0.4);
+  --fa-glass: rgba(255, 255, 255, 0.35);
 }
 
+<<<<<<< HEAD
 html {
   scroll-behavior: smooth;
 }
@@ -26,8 +28,30 @@ body {
   background: var(--fa-glass) !important;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+=======
+/* Fondo principal estilo Frutiger Aero */
+body {
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.35), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(255,255,255,0.25), transparent 30%),
+    linear-gradient(135deg, #8cf58d 0%, #7fd9ff 50%, #5a8eff 100%) !important;
+
+  background-attachment: fixed;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Tarjeta glass */
+.glass-card {
+  background: var(--fa-glass) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+>>>>>>> c24b6578f6279719dfdca77355659cbcdc83295c
   border: 1px solid rgba(255, 255, 255, 0.6) !important;
+
   border-radius: 20px;
+<<<<<<< HEAD
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
@@ -172,4 +196,571 @@ body {
   overflow-y: scroll;
   background: rgba(255,255,255,0.6);
   backdrop-filter: blur(8px);
+=======
+
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+}
+
+/* Ventana Principal */
+.hero-window {
+
+  background: rgba(255,255,255,0.25);
+
+  border-radius: 30px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255,255,255,0.5);
+
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+
+  backdrop-filter: blur(15px);
+}
+
+/* Barra Superior tipo Vista */
+.window-top-bar {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 14px 20px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.9),
+    rgba(180,220,255,0.6)
+  );
+}
+
+/* Botones */
+.window-buttons-left {
+  display: flex;
+  gap: 10px;
+}
+
+.vista-circle-btn {
+
+  width: 45px;
+  height: 45px;
+
+  border-radius: 50%;
+
+  border: none;
+
+  font-size: 18px;
+
+  color: white;
+
+  background:
+    linear-gradient(to bottom, #8fd2ff, #3478ff);
+
+  box-shadow:
+    inset 0 2px 4px rgba(255,255,255,0.7),
+    0 4px 10px rgba(0,0,0,0.2);
+
+  transition: 0.3s;
+}
+
+.vista-circle-btn:hover {
+  transform: scale(1.08);
+}
+
+/* Buscador */
+.window-search {
+  width: 320px;
+}
+
+/* Hero Principal */
+.hero-content {
+  padding: 50px 20px;
+}
+
+/* Imagen principal */
+.mini-rodri-main {
+
+  width: 170px;
+
+  filter:
+    drop-shadow(0 0 20px rgba(255,255,255,0.7))
+    drop-shadow(0 0 30px rgba(0,255,170,0.5));
+
+  animation: floatRodri 4s ease-in-out infinite;
+}
+
+@keyframes floatRodri {
+
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+/* Título Principal */
+.main-title {
+
+  font-size: 70px;
+
+  font-weight: 900;
+
+  line-height: 0.95;
+
+  margin-top: 15px;
+
+  background:
+    linear-gradient(to bottom, #ffffff, #9dd7ff, #3378ff);
+
+  -webkit-background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.5),
+    0 4px 20px rgba(0,0,0,0.15);
+}
+
+/* Subtítulo */
+.main-subtitle {
+
+  margin-top: 20px;
+
+  font-size: 22px;
+
+  color: #12456b;
+
+  font-weight: 600;
+}
+
+/* Barra de navegación */
+.vista-navbar {
+
+  background: rgba(255,255,255,0.35);
+
+  border-radius: 20px;
+
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+/* Links */
+.vista-link {
+
+  color: #114d9c !important;
+
+  font-weight: 700;
+
+  transition: 0.3s;
+
+  border-radius: 15px;
+
+  padding: 10px 18px;
+}
+
+.vista-link:hover {
+
+  background: rgba(255,255,255,0.4);
+
+  transform: translateY(-2px);
+}
+
+/* Imagen central */
+.hero-image {
+
+  width: 100%;
+
+  max-width: 700px;
+
+  border-radius: 30px;
+
+  border: 5px solid rgba(255,255,255,0.7);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.15),
+    0 0 30px rgba(255,255,255,0.4);
+}
+
+/* Tarjeta presentación */
+.presentation-card {
+
+  background: rgba(255,255,255,0.4);
+
+  border-radius: 30px;
+
+  padding: 40px;
+
+  border: 1px solid rgba(255,255,255,0.6);
+
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* Título presentación */
+.presentation-title {
+
+  font-size: 60px;
+
+  font-style: italic;
+
+  color: #17375d;
+
+  text-shadow:
+    0 0 10px rgba(255,255,255,0.6);
+}
+
+/* Texto presentación */
+.presentation-text {
+
+  font-size: 20px;
+
+  color: #24496f;
+
+  margin-top: 20px;
+}
+
+/* Imagen secundaria */
+.presentation-rodri {
+
+  width: 220px;
+
+  filter:
+    drop-shadow(0 0 20px rgba(255,255,255,0.7));
+}
+
+/* Título sección */
+.section-title {
+
+  font-size: 35px;
+
+  color: #17375d;
+
+  font-weight: 800;
+
+  margin-bottom: 25px;
+}
+
+/* Tarjeta preview */
+.chat-preview-card {
+
+  background: rgba(255,255,255,0.35);
+
+  border-radius: 30px;
+
+  padding: 30px;
+
+  text-align: center;
+
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+/* Imagen preview */
+.chat-preview-img {
+
+  width: 140px;
+
+  margin-bottom: 20px;
+}
+
+/* Título preview */
+.chat-preview-title {
+
+  font-size: 35px;
+
+  color: #19509b;
+
+  font-weight: 800;
+}
+
+/* Texto preview */
+.chat-preview-text {
+
+  color: #285c85;
+
+  margin-bottom: 20px;
+}
+
+/* Botón principal */
+.open-chat-btn {
+
+  background:
+    linear-gradient(to bottom, #7bd4ff, #3478ff);
+
+  border: none;
+
+  color: white;
+
+  font-weight: bold;
+
+  border-radius: 20px;
+
+  padding: 12px 25px;
+
+  box-shadow:
+    0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Sidebar */
+.sidebar-card {
+
+  background: rgba(255,255,255,0.35);
+
+  border-radius: 25px;
+
+  padding: 25px;
+
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+/* Sidebar título */
+.sidebar-title {
+
+  color: #1d4b80;
+
+  font-size: 28px;
+
+  font-weight: 800;
+}
+
+/* BOTÓN FLOTANTE */
+.floating-chat-button {
+
+  position: fixed;
+
+  bottom: 25px;
+  right: 25px;
+
+  z-index: 9999;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  border: none;
+
+  padding: 12px 18px;
+
+  border-radius: 50px;
+
+  background:
+    linear-gradient(to bottom, #9be0ff, #2e73ff);
+
+  color: white;
+
+  font-weight: bold;
+
+  box-shadow:
+    0 8px 20px rgba(0,0,0,0.25);
+
+  transition: 0.3s;
+}
+
+.floating-chat-button:hover {
+
+  transform: scale(1.05);
+}
+
+/* Imagen botón flotante */
+.floating-chat-image {
+
+  width: 55px;
+  height: 55px;
+
+  object-fit: contain;
+}
+
+/* VENTANA CHAT */
+.chat-window {
+
+  position: fixed;
+
+  bottom: 20px;
+  right: 20px;
+
+  width: 420px;
+  height: 650px;
+
+  background: rgba(255,255,255,0.88);
+
+  border-radius: 25px;
+
+  overflow: hidden;
+
+  z-index: 99999;
+
+  backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255,255,255,0.6);
+
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.25);
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+/* Expandir */
+.expanded-chat {
+
+  width: 650px;
+  height: 760px;
+}
+
+/* Header Chat */
+.chat-window-header {
+
+  background:
+    linear-gradient(to bottom, #79c9ff, #1d68ff);
+
+  color: white;
+
+  padding: 12px 15px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+/* Imagen Header */
+.chat-header-image {
+
+  width: 40px;
+  height: 40px;
+}
+
+/* Botones ventana */
+.window-action-btn {
+
+  border: none;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 8px;
+
+  background: rgba(255,255,255,0.25);
+
+  color: white;
+
+  font-weight: bold;
+
+  transition: 0.3s;
+}
+
+.window-action-btn:hover {
+
+  background: rgba(255,255,255,0.4);
+}
+
+.close-btn:hover {
+
+  background: #ff4a4a;
+}
+
+/* Body chat */
+.chat-window-body {
+
+  flex: 1;
+
+  padding: 20px;
+
+  overflow-y: auto;
+}
+
+/* Imagen chat */
+.chat-main-image {
+
+  width: 120px;
+
+  filter:
+    drop-shadow(0 0 15px rgba(255,255,255,0.7));
+}
+
+/* Historial */
+.chat-history {
+
+  height: 220px;
+
+  overflow-y: auto;
+
+  background: rgba(255,255,255,0.35);
+
+  border-radius: 20px;
+
+  padding: 15px;
+
+  border: 1px solid rgba(255,255,255,0.5);
+}
+
+/* Mensajes */
+.chat-message {
+
+  margin-bottom: 12px;
+
+  padding: 12px;
+
+  border-radius: 15px;
+}
+
+/* Bot */
+.bot-message {
+
+  background: rgba(139, 220, 255, 0.45);
+}
+
+/* Usuario */
+.user-message {
+
+  background: rgba(255,255,255,0.8);
+
+  border: 1px solid rgba(0,0,0,0.08);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+  .main-title {
+    font-size: 45px;
+  }
+
+  .presentation-title {
+    font-size: 40px;
+  }
+
+  .chat-window {
+
+    width: 95%;
+    right: 2.5%;
+    bottom: 10px;
+  }
+
+  .expanded-chat {
+
+    width: 95%;
+  }
+
+>>>>>>> c24b6578f6279719dfdca77355659cbcdc83295c
 }
