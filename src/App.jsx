@@ -148,7 +148,10 @@ function App() {
         </div>
       </div>
 
+<<<<<<< HEAD
  {/* SECCIÓN PRINCIPAL: ÍNDICE Y CONTENIDO TOTALMENTE SIMÉTRICOS */}
+=======
+>>>>>>> 80c535e9e237c0e2ab20180fb8be5fa4e9ec01de
       {/* SECCIÓN PRINCIPAL: ÍNDICE Y CONTENIDO TOTALMENTE SIMÉTRICOS */}
       <div className="row g-4 mb-4">
         <h3 className="section-title mb-3">Índice Temático Interactivo</h3>
@@ -204,7 +207,11 @@ function App() {
         </div>
       </div>
 
+<<<<<<< HEAD
       {/* SECCIÓN INFERIOR COMPLETA: NUEVA UBICACIÓN DE AYUDA INTERACTIVA Y CHATBOT */}
+=======
+      {/* SECCIÓN INFERIOR COMPLETA: MANTENIENDO EL DISEÑO CON BOTONES DE COLORES */}
+>>>>>>> 80c535e9e237c0e2ab20180fb8be5fa4e9ec01de
       <div className="row justify-content-center mb-5">
         <div className="col-md-8">
           <div className="chat-preview-card p-4 text-center bg-light rounded shadow-sm border border-light-subtle">
@@ -219,7 +226,11 @@ function App() {
               MiniRodri puede guiarte de forma interactiva con los siguientes temas:
             </p>
             
+<<<<<<< HEAD
             {/* Los 4 botones de categorías reincorporados de forma espaciosa */}
+=======
+            {/* Los 4 botones de categorías interactivos */}
+>>>>>>> 80c535e9e237c0e2ab20180fb8be5fa4e9ec01de
             <div className="d-flex flex-wrap gap-2 justify-content-center mb-4">
               <button className="btn btn-primary px-3 shadow-sm">Ver algoritmos</button>
               <button className="btn btn-info text-white px-3 shadow-sm">Árboles</button>
@@ -237,6 +248,7 @@ function App() {
             </button>
           </div>
         </div>
+<<<<<<< HEAD
       </div>
 
       {/* SECCIÓN INFERIOR: ACCESO RÁPIDO AL CHATBOT */}
@@ -259,6 +271,8 @@ function App() {
             </button>
           </div>
         </div>
+=======
+>>>>>>> 80c535e9e237c0e2ab20180fb8be5fa4e9ec01de
       </div>
 
       {/* BOTÓN FLOTANTE */}

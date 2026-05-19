@@ -692,6 +692,7 @@ body {
 .form-control:focus {
   border-color: #0076de !important;
   box-shadow: 0 0 8px rgba(0, 118, 222, 0.5) !important;
+<<<<<<< HEAD
 }
 /* --- Contenedor Principal del Índice Temático --- */
 .interactive-index-container {
@@ -815,3 +816,6 @@ body {
   background: linear-gradient(to bottom, #76f3ff, #17b0cb);
 }
 
+=======
+}
+>>>>>>> 80c535e9e237c0e2ab20180fb8be5fa4e9ec01de
