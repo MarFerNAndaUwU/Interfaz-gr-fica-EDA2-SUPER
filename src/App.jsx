@@ -1,8 +1,24 @@
 import './App.css';
-import React, { useState } from 'react'; // 1. Importamos useState para la "memoria"
+import React, { useState, useRef } from 'react'; // 1. Importamos useState para la "memoria"
 import miniRodri from './assets/minirodri.png';
+import musicaFondo from './assets/musica-fondo.mp3';
 
 function App() {
+
+  // --- Estados y Referencias para la Música ---
+  const [musicaActiva, setMusicaActiva] = useState(false);
+  const audioRef = useRef(null); // Nuestro "control remoto"
+
+  const controlarMusica = () => {
+    if (musicaActiva) {
+      audioRef.current.pause(); // Pausa la canción
+    } else {
+      audioRef.current.play().catch(err => {
+        console.log("El navegador bloqueó el autoplay hasta que interactúes.");
+      }); // Sube el volumen
+    }
+    setMusicaActiva(!musicaActiva); // Cambia el estado del botón
+  };
 
   // 2. Definimos el "estado". 'mensaje' es lo que se escribe, 'setMensaje' es la función para cambiarlo.
   const [mensaje, setMensaje] = useState('');
@@ -70,6 +86,9 @@ function App() {
   return (
     <div className="container py-4">
 
+      {/* 🍏 AQUÍ AGREGAMOS LA ETIQUETA DE AUDIO*/}
+      <audio ref={audioRef} src={musicaFondo} loop />
+
       {/* Encabezado Principal */}
       <header className="hero-window mb-4">
         {/* Barra tipo Windows Vista */}
@@ -78,6 +97,12 @@ function App() {
             <button className="vista-circle-btn">◀</button>
             <button className="vista-circle-btn">▶</button>
           </div>
+
+          {/* 🍏 AQUÍ COLOCAMOS EL BOTÓN MULTIMEDIA ESTILO GLOSSY */}
+          <button onClick={controlarMusica} className="btn-glossy-music px-3 py-1">
+            {musicaActiva ? '🎵 Pausar Música' : '🔇 Activar Música'}
+          </button>
+
           <div className="window-search">
             <input
               type="text"
@@ -106,24 +131,36 @@ function App() {
       </header>
 
       {/* Navegación Superior */}
-      <div className="nav-scroller py-2 mb-4 vista-navbar">
-        <nav className="nav justify-content-between">
-          <a className="nav-item nav-link active vista-link" href="#">Inicio</a>
-          <a className="nav-item nav-link vista-link" href="#">Algoritmos</a>
-          <a className="nav-item nav-link vista-link" href="#">Documentación</a>
-          <a className="nav-item nav-link vista-link" href="#">Nosotros</a>
-          <a className="nav-item nav-link vista-link" href="#">¡A trabajar!</a>
-        </nav>
-      </div>
+<div className="nav-scroller py-2 mb-4 vista-navbar">
+  <nav className="nav justify-content-between px-3"> 
+    
+    <a className="nav-item nav-link active vista-link d-flex align-items-center gap-2" href="#">
+      <img src="https://img1.picmix.com/output/stamp/normal/2/8/1/9/2469182_9b42d.png" alt="Inicio" width="70" height="70" style={{ objectFit: 'contain' }} />
+      Inicio
+    </a>
+    
+    <a className="nav-item nav-link vista-link d-flex align-items-center gap-2" href="#">
+      <img src="https://www.pngall.com/wp-content/uploads/17/Frutiger-Aero-Distinctive-Type-Style-PNG.png" alt="Algoritmos" width="40" height="40" style={{ objectFit: 'contain' }} />
+      Algoritmos
+    </a>
+    
+    <a className="nav-item nav-link vista-link d-flex align-items-center gap-2" href="#">
+      <img src="https://images.icon-icons.com/991/PNG/512/Windows7_icon-icons.com_75251.png" alt="Documentación" width="32" height="32" style={{ objectFit: 'contain' }} />
+      Documentación
+    </a>
+    
+    <a className="nav-item nav-link vista-link d-flex align-items-center gap-2" href="#">
+      <img src="https://www.pngall.com/wp-content/uploads/17/Frutiger-Aero-Artistic-Font-Showcase-PNG.png" alt="Nosotros" width="70" height="70" style={{ objectFit: 'contain' }} />
+      Nosotros
+    </a>
+    
+    <a className="nav-item nav-link vista-link d-flex align-items-center gap-2" href="#">
+      <img src="https://pbs.twimg.com/media/F0v3cN-aQAECTcf.png" alt="¡A trabajar!" width="32" height="32" style={{ objectFit: 'contain' }} />
+      ¡A trabajar!
+    </a>
 
-      {/* Imagen Principal */}
-      <div className="text-center mb-4">
-        <img
-          src="https://static.wikia.nocookie.net/aesthetics/images/5/5f/Asadal_design_graphics.jpg"
-          alt="Frutiger Aero"
-          className="hero-image"
-        />
-      </div>
+  </nav>
+</div>
 
       {/* Tarjeta Principal de Presentación */}
       <div className="presentation-card mb-5">
@@ -148,62 +185,69 @@ function App() {
         </div>
       </div>
 
-      {/* SECCIÓN PRINCIPAL: ÍNDICE Y CONTENIDO TOTALMENTE SIMÉTRICOS */}
-      <div className="row g-4 mb-4">
-        <h3 className="section-title mb-3">Índice Temático Interactivo</h3>
+     {/* SECCIÓN PRINCIPAL: ÍNDICE Y CONTENIDO FRUTIGER AERO */}
+<div className="container py-4interactive-frutiger-index">
+  <div className="glass-bubble-bg"></div> {/* Capa para las burbujas de fondo */}
+  
+  <h3 className="section-title text-center text-primary-aero mb-4">
+    Índice Temático Interactivo
+  </h3>
+
+  <div className="row g-4 align-items-stretch">
+
+    {/* Columna Izquierda: Menú con botones de burbuja */}
+    <div className="col-md-4">
+      <div className="frutiger-sidebar p-3 d-flex flex-column gap-2 justify-content-center h-100">
+        <h4 className="sidebar-title text-center mb-3">Temas Disponibles</h4>
         
-        {/* Columna Izquierda: Menú del Scrollspy limpio sin elementos extra */}
-        <div className="col-md-4">
-          <div 
-            className="p-3 bg-light rounded shadow-sm border border-light-subtle d-flex flex-column justify-content-center"
-            style={{ height: '450px' }}
-          >
-            <h4 className="sidebar-title text-center mb-4">Temas Disponibles</h4>
-            
-            <div id="simple-list-example" className="d-flex flex-column gap-3 simple-list-example-scrollspy text-center">
-              <a className="p-2 rounded btn btn-outline-primary btn-sm text-start fw-medium" href="#simple-list-item-1">• Merge Sort</a>
-              <a className="p-2 rounded btn btn-outline-primary btn-sm text-start fw-medium" href="#simple-list-item-2">• Quick Sort</a>
-              <a className="p-2 rounded btn btn-outline-primary btn-sm text-start fw-medium" href="#simple-list-item-3">• Árboles Binarios</a>
-              <a className="p-2 rounded btn btn-outline-primary btn-sm text-start fw-medium" href="#simple-list-item-4">• Estructuras de Grafos</a>
-              <a className="p-2 rounded btn btn-outline-primary btn-sm text-start fw-medium" href="#simple-list-item-5">• Complejidad Algorítmica</a>
-            </div>
-          </div>
-        </div>
-
-        {/* Columna Derecha: Contenido Desplazable (Scrollspy) */}
-        <div className="col-md-8">
-          <div 
-            data-bs-spy="scroll" 
-            data-bs-target="#simple-list-example" 
-            data-bs-offset="0" 
-            data-bs-smooth-scroll="true" 
-            className="scrollspy-example bg-light p-4 rounded shadow-sm border border-light-subtle" 
-            tabIndex="0"
-            style={{ height: '450px', overflowY: 'auto', position: 'relative' }}
-          >
-            <h4 id="simple-list-item-1" className="text-primary mt-2">1. Merge Sort</h4>
-            <p>Es un algoritmo de ordenamiento basado en la técnica de <em>Divide y Vencerás</em>. Divide el arreglo recursivamente a la mitad hasta tener subarreglos de tamaño 1, para luego fusionarlos (merge) de manera ordenada en tiempo lineal $O(n \log n)$.</p>
-            <hr />
-
-            <h4 id="simple-list-item-2" className="text-primary mt-4">2. Quick Sort</h4>
-            <p>Otro algoritmo clásico de ordenamiento que utiliza un elemento llamado "pivote" para particionar la estructura. Coloca los menores a un lado y los mayores al otro, repitiendo el proceso de manera recursiva.</p>
-            <hr />
-
-            <h4 id="simple-list-item-3" className="text-primary mt-4">3. Árboles Binarios</h4>
-            <p>Estructuras de datos no lineales y jerárquicas. Cada nodo padre puede tener como máximo dos hijos (izquierdo y derecho). Son fundamentales para búsquedas rápidas como en los árboles binarios de búsqueda (BST).</p>
-            <hr />
-
-            <h4 id="simple-list-item-4" className="text-primary mt-4">4. Estructuras de Grafos</h4>
-            <p>Un conjunto de vértices (nodos) conectados a través de aristas (relaciones). Se pueden representar mediante matrices de adyacencia o listas de adyacencia, indispensables para redes y mapas.</p>
-            <hr />
-
-            <h4 id="simple-list-item-5" className="text-primary mt-4">5. Complejidad Algorítmica</h4>
-            <p>Estudio del rendimiento de los algoritmos mediante la notación Big O ($O$). Nos permite evaluar la eficiencia temporal y espacial a medida que el tamaño de los datos de entrada ($n$) crece exponencialmente.</p>
-          </div>
+        <div id="simple-list-example" className="d-flex flex-column gap-3 frutiger-bubble-list">
+          <a className="frutiger-bubble-item active" href="#simple-list-item-1">• Ordenación por fusión</a>
+          <a className="frutiger-bubble-item" href="#simple-list-item-2">• Clasificación rápida</a>
+          <a className="frutiger-bubble-item" href="#simple-list-item-3">• Árboles Binarios</a>
+          <a className="frutiger-bubble-item" href="#simple-list-item-4">• Estructuras de Grafos</a>
+          <a className="frutiger-bubble-item" href="#simple-list-item-5">• Complejidad Algorítmica</a>
         </div>
       </div>
+    </div>
+
+    {/* Columna Derecha: Contenido Desplazable (Scrollspy) */}
+    <div className="col-md-8">
+      <div 
+        data-bs-spy="scroll" 
+        data-bs-target="#simple-list-example" 
+        data-bs-offset="0" 
+        data-bs-smooth-scroll="true" 
+        className="frutiger-scrollspy bg-light p-4 rounded shadow-sm border border-light-subtle h-100" 
+        tabIndex="0"
+        style={{ overflowY: 'auto', position: 'relative' }}
+      >
+        <div className="scrollspy-glossy-overlay"></div> {/* Superposición brillante */}
+
+        <h4 id="simple-list-item-1" className="text-primary mt-2">1. Ordenación por fusión</h4>
+        <p>Es un algoritmo de ordenamiento basado en la técnica de <em>Divide y Vencerás</em>. Divide el arreglo recursivamente a la mitad hasta tener subarreglos de tamaño 1, para luego fusionarlos (merge) de manera ordenada en tiempo lineal $O(n \log n)$.</p>
+        <hr className="frutiger-divider" />
+
+        <h4 id="simple-list-item-2" className="text-primary mt-4">2. Clasificación rápida</h4>
+        <p>Otro algoritmo clásico de ordenamiento que utiliza un elemento llamado "pivote" para particionar la estructura. Coloca los menores a un lado y los mayores al otro, repitiendo el proceso de manera recursiva.</p>
+        <hr className="frutiger-divider" />
+
+        <h4 id="simple-list-item-3" className="text-primary mt-4">3. Árboles Binarios</h4>
+        <p>Estructuras de datos no lineales y jerárquicas. Cada nodo padre puede tener como máximo dos hijos (izquierdo y derecho). Son fundamentales para búsquedas rápidas como en los árboles binarios de búsqueda (BST).</p>
+        <hr className="frutiger-divider" />
+
+        <h4 id="simple-list-item-4" className="text-primary mt-4">4. Estructuras de Grafos</h4>
+        <p>Un conjunto de vértices (nodos) conectados a través de aristas (relaciones). Se pueden representar mediante matrices de adyacencia o listas de adyacencia, indispensables para redes y mapas.</p>
+        <hr className="frutiger-divider" />
+
+        <h4 id="simple-list-item-5" className="text-primary mt-4">5. Complejidad Algorítmica</h4>
+        <p>Estudio del rendimiento de los algoritmos mediante la notación Big O ($O$). Nos permite evaluar la eficiencia temporal y espacial a medida que el tamaño de los datos de entrada ($n$) crece exponencialmente.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
       {/* SECCIÓN INFERIOR COMPLETA: MANTENIENDO EL DISEÑO CON BOTONES DE COLORES */}
+      <div className="container mt-5"></div>
       <div className="row justify-content-center mb-5">
         <div className="col-md-8">
           <div className="chat-preview-card p-4 text-center bg-light rounded shadow-sm border border-light-subtle">
