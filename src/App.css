@@ -695,8 +695,11 @@ body::after {
   position: absolute;
   top: 0; left: 0; width: 100%; height: 50%;
   background: linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 0%, transparent 100%);
-  pointer-events: none;
+
   border-radius: 20px 20px 0 0;
+  
+  /* 🪄 LA LÍNEA MÁGICA: Hace que el mouse ignore esta capa y cliquee lo que está abajo */
+  pointer-events: none !important; 
 }
 
 .frutiger-scrollspy h4 {
@@ -740,3 +743,112 @@ body::after {
   background: linear-gradient(to bottom, #7bdcff, #005eb6);
 }
 
+/* ==========================================================================
+   🔓 PARCHE DEFINITIVO PARA REPARAR CLICS Y CURSORES (FRUTIGER AERO)
+   ========================================================================== */
+
+/* 1. Obligamos al mouse a ignorar todas las capas decorativas y reflejos de cristal */
+.hero-window::before, 
+.chat-preview-card::before, 
+.scrollspy-glossy-overlay,
+body::before,
+body::after {
+  pointer-events: none !important;
+}
+
+/* 2. Traemos al frente la barra de navegación y aseguramos su interactividad */
+.vista-navbar {
+  position: relative !important;
+  z-index: 999 !important;
+  pointer-events: auto !important;
+}
+
+/* 3. Forzamos a que aparezca la manita del cursor en todos los botones y enlaces */
+.vista-link, 
+.btn-glossy-music, 
+.nav-item, 
+.nav-link,
+.frutiger-bubble-item,
+.open-chat-btn,
+.btn-primary {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+/* ==========================================================================
+   🔒 PARCHE EXTRA: DESBLOQUEO TOTAL DE LA BARRA SUPERIOR (ZONA CÍRCULO ROJO)
+   ========================================================================== */
+
+/* 1. Forzamos a la barra superior y a todo lo que tiene adentro a ponerse al frente de cualquier reflejo */
+.window-top-bar {
+  position: relative !important;
+  z-index: 99999 !important; /* La subimos al nivel máximo de prioridad */
+  pointer-events: auto !important;
+}
+
+/* 2. Liberamos específicamente los botones circulares, el buscador y el texto de esa barra */
+.window-top-bar *, 
+.vista-circle-btn, 
+.window-search, 
+.form-control {
+  position: relative !important;
+  z-index: 100000 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* 3. Nos aseguramos de que el input para escribir en el buscador use el cursor de texto correcto */
+.window-search .form-control {
+  cursor: text !important;
+}
+
+/* 4. Quitamos cualquier contenedor invisible de Bootstrap que se desborde sobre la barra */
+.nav-scroller {
+  position: relative !important;
+  z-index: 998 !important; /* Lo mantenemos un paso atrás para que no tape lo de arriba */
+}
+
+/* ==========================================================================
+   💥 TRIPLE PARCHE FORZADO DE CAPAS (DESBLOQUEO TOTAL)
+   ========================================================================== */
+
+/* 1. Elevamos drásticamente el botón de música y su contenedor directo */
+.btn-glossy-music {
+  position: relative !important;
+  z-index: 9999999 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* 2. Forzamos a toda la barra superior a ser el elemento con mayor prioridad de la página */
+.window-top-bar, 
+.window-top-bar * {
+  z-index: 9999998 !important;
+  pointer-events: auto !important;
+}
+
+/* 3. Castigamos a los fondos e imágenes laterales bajándolos de nivel por si acaso */
+body::before,
+body::after,
+.interactive-frutiger-index::before,
+.glass-bubble-bg {
+  z-index: -10 !important;
+  pointer-events: none !important;
+}
+
+/* ==========================================================================
+   🐟 EFECTO ACUARIO FRUTIGER AERO (PECES AL FONDO SIN BLOQUEAR CLICS)
+   ========================================================================== */
+.vista-fish-aquarium {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 65%; /* Qué tan arriba nadarán tus peces */
+  background-size: 280px; /* Aquí controlas qué tan grandes o chicos se ven */
+  background-repeat: repeat-x; 
+  background-position: bottom;
+  opacity: 0.65; 
+  z-index: 1; 
+  pointer-events: none !important; /* Crucial para que no te bloquee los botones */
+}

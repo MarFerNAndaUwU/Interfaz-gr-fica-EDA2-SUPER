@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState, useRef } from 'react'; // 1. Importamos useState para la "memoria"
 import miniRodri from './assets/minirodri.png';
 import musicaFondo from './assets/musica-fondo.mp3';
+import pecesGilet from './assets/peces-acuario.gif'; // Tu nuevo GIF local
 
 function App() {
 
@@ -90,15 +91,19 @@ function App() {
       <audio ref={audioRef} src={musicaFondo} loop />
 
       {/* Encabezado Principal */}
-      <header className="hero-window mb-4">
+      <header className="hero-window mb-4" style={{ position: 'relative', overflow: 'hidden' }}>
+        
+        {/* 🐟 CAPA MÁGICA DE PECES (Fondo de acuario sin bloquear clics) */}
+        <div className="vista-fish-aquarium" style={{ backgroundImage: `url(${pecesGilet})` }}></div>
+
         {/* Barra tipo Windows Vista */}
-        <div className="window-top-bar">
+        <div className="window-top-bar" style={{ position: 'relative', zIndex: 10 }}>
           <div className="window-buttons-left">
             <button className="vista-circle-btn">◀</button>
             <button className="vista-circle-btn">▶</button>
           </div>
 
-          {/* 🍏 AQUÍ COLOCAMOS EL BOTÓN MULTIMEDIA ESTILO GLOSSY */}
+          {/* 🍏 BOTÓN MULTIMEDIA ESTILO GLOSSY */}
           <button onClick={controlarMusica} className="btn-glossy-music px-3 py-1">
             {musicaActiva ? '🎵 Pausar Música' : '🔇 Activar Música'}
           </button>
@@ -113,7 +118,7 @@ function App() {
         </div>
 
         {/* Contenido Principal */}
-        <div className="hero-content text-center">
+        <div className="hero-content text-center" style={{ position: 'relative', zIndex: 5 }}>
           <img
             src={miniRodri}
             alt="MiniRodri"
