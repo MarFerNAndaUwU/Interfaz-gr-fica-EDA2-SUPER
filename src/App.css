@@ -10,10 +10,13 @@ body {
     radial-gradient(circle at top left, rgba(255,255,255,0.35), transparent 30%),
     radial-gradient(circle at bottom right, rgba(255,255,255,0.25), transparent 30%),
     linear-gradient(135deg, #8cf58d 0%, #7fd9ff 50%, #5a8eff 100%) !important;
-
   background-attachment: fixed;
   min-height: 100vh;
   overflow-x: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #1a3a5f;
+  position: relative;
+  z-index: 0;
 }
 
 /* Tarjeta glass */
@@ -21,11 +24,8 @@ body {
   background: var(--fa-glass) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-
   border: 1px solid rgba(255, 255, 255, 0.6) !important;
-
   border-radius: 20px;
-
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255,255,255,0.8);
@@ -33,33 +33,22 @@ body {
 
 /* Ventana Principal */
 .hero-window {
-
   background: rgba(255,255,255,0.25);
-
   border-radius: 30px;
-
   overflow: hidden;
-
   border: 1px solid rgba(255,255,255,0.5);
-
   box-shadow:
     0 10px 40px rgba(0,0,0,0.15),
     inset 0 1px 0 rgba(255,255,255,0.8);
-
   backdrop-filter: blur(15px);
 }
 
 /* Barra Superior tipo Vista */
 .window-top-bar {
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
   padding: 14px 20px;
-
   background: linear-gradient(
     to bottom,
     rgba(255,255,255,0.9),
@@ -74,25 +63,16 @@ body {
 }
 
 .vista-circle-btn {
-
   width: 45px;
   height: 45px;
-
   border-radius: 50%;
-
   border: none;
-
   font-size: 18px;
-
   color: white;
-
-  background:
-    linear-gradient(to bottom, #8fd2ff, #3478ff);
-
+  background: linear-gradient(to bottom, #8fd2ff, #3478ff);
   box-shadow:
     inset 0 2px 4px rgba(255,255,255,0.7),
     0 4px 10px rgba(0,0,0,0.2);
-
   transition: 0.3s;
 }
 
@@ -112,57 +92,30 @@ body {
 
 /* Imagen principal */
 .mini-rodri-main {
-
   width: 170px;
-
   filter:
     drop-shadow(0 0 20px rgba(255,255,255,0.7))
     drop-shadow(0 0 30px rgba(0,255,170,0.5));
-
   animation: floatRodri 4s ease-in-out infinite;
 }
 
 @keyframes floatRodri {
-
-  0% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
 
 /* Título Principal */
 .main-title {
-
-  /* 1. Tipografía estilizada, gruesa y muy limpia */
   font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
-
   font-size: 72px;
-
   font-weight: 800;
-
   line-height: 0.95;
-
   margin-top: 15px;
-
-  letter-spacing: -1px; /* Junta un poco las letras como en los logos de Windows Vista */
-
-  /* 2. El degradado de gel fluido brillante */
+  letter-spacing: -1px;
   background: linear-gradient(to bottom, #bbf0ff 0%, #2bb2ff 45%, #0056d6 100%);
-
   -webkit-background-clip: text;
-
   -webkit-text-fill-color: transparent;
-
-  /* 3. El truco maestro: Doble sombra */
-  /* La primera capa blanca simula el brillo de la luz solar en el borde del cristal. */
-  /* La segunda capa oscura le da profundidad para que flote sobre el fondo. */
   text-shadow: 
     0px 2px 3px rgba(255, 255, 255, 0.8), 
     0px 4px 12px rgba(0, 86, 214, 0.25);
@@ -170,61 +123,45 @@ body {
 
 /* Subtítulo */
 .main-subtitle {
-
   margin-top: 20px;
-
   font-size: 22px;
-
   color: #12456b;
-
   font-weight: 600;
 }
 
 /* Barra de navegación */
 .vista-navbar {
-
   background: rgba(255,255,255,0.35);
   border-radius: 20px;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255,255,255,0.5);
 
-  position: sticky;
-  top: 10px;
-  z-index: 9998;
+  position: sticky !important;
+  top: 10px !important;
+  z-index: 9998 !important;
+  pointer-events: auto !important;
 }
 
 /* Links */
 .vista-link {
-
   color: #114d9c !important;
-
   font-weight: 700;
-
   transition: 0.3s;
-
   border-radius: 15px;
-
   padding: 10px 18px;
 }
 
 .vista-link:hover {
-
   background: rgba(255,255,255,0.4);
-
   transform: translateY(-2px);
 }
 
 /* Imagen central */
 .hero-image {
-
   width: 100%;
-
   max-width: 700px;
-
   border-radius: 30px;
-
   border: 5px solid rgba(255,255,255,0.7);
-
   box-shadow:
     0 10px 30px rgba(0,0,0,0.15),
     0 0 30px rgba(255,255,255,0.4);
@@ -232,385 +169,231 @@ body {
 
 /* Tarjeta presentación */
 .presentation-card {
-
   background: rgba(255,255,255,0.4);
-
   border-radius: 30px;
-
   padding: 40px;
-
   border: 1px solid rgba(255,255,255,0.6);
-
   backdrop-filter: blur(12px);
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 /* Título presentación */
 .presentation-title {
-
   font-size: 60px;
-
   font-style: italic;
-
   color: #17375d;
-
-  text-shadow:
-    0 0 10px rgba(255,255,255,0.6);
+  text-shadow: 0 0 10px rgba(255,255,255,0.6);
 }
 
 /* Texto presentación */
 .presentation-text {
-
   font-size: 20px;
-
   color: #24496f;
-
   margin-top: 20px;
 }
 
 /* Imagen secundaria */
 .presentation-rodri {
-
   width: 220px;
-
-  filter:
-    drop-shadow(0 0 20px rgba(255,255,255,0.7));
+  filter: drop-shadow(0 0 20px rgba(255,255,255,0.7));
 }
 
 /* Título sección */
 .section-title {
-
   font-size: 35px;
-
   color: #17375d;
-
   font-weight: 800;
-
   margin-bottom: 25px;
 }
 
 /* Tarjeta preview */
 .chat-preview-card {
-
   background: rgba(255,255,255,0.35);
-
   border-radius: 30px;
-
   padding: 30px;
-
   text-align: center;
-
   backdrop-filter: blur(10px);
-
   border: 1px solid rgba(255,255,255,0.5);
 }
 
 /* Imagen preview */
 .chat-preview-img {
-
   width: 140px;
-
   margin-bottom: 20px;
 }
 
 /* Título preview */
 .chat-preview-title {
-
   font-size: 35px;
-
   color: #19509b;
-
   font-weight: 800;
 }
 
 /* Texto preview */
 .chat-preview-text {
-
   color: #285c85;
-
   margin-bottom: 20px;
 }
 
 /* Botón principal */
 .open-chat-btn {
-
-  background:
-    linear-gradient(to bottom, #7bd4ff, #3478ff);
-
+  background: linear-gradient(to bottom, #7bd4ff, #3478ff);
   border: none;
-
   color: white;
-
   font-weight: bold;
-
   border-radius: 20px;
-
   padding: 12px 25px;
-
-  box-shadow:
-    0 4px 15px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 /* Sidebar */
 .sidebar-card {
-
   background: rgba(255,255,255,0.35);
-
   border-radius: 25px;
-
   padding: 25px;
-
   backdrop-filter: blur(10px);
-
   border: 1px solid rgba(255,255,255,0.5);
 }
 
 /* Sidebar título */
 .sidebar-title {
-
   color: #1d4b80;
-
   font-size: 28px;
-
   font-weight: 800;
 }
 
 /* BOTÓN FLOTANTE */
 .floating-chat-button {
-
   position: fixed;
-
   bottom: 25px;
   right: 25px;
-
   z-index: 9999;
-
   display: flex;
-
   align-items: center;
-
   gap: 12px;
-
   border: none;
-
   padding: 12px 18px;
-
   border-radius: 50px;
-
-  background:
-    linear-gradient(to bottom, #9be0ff, #2e73ff);
-
+  background: linear-gradient(to bottom, #9be0ff, #2e73ff);
   color: white;
-
   font-weight: bold;
-
-  box-shadow:
-    0 8px 20px rgba(0,0,0,0.25);
-
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
   transition: 0.3s;
 }
 
 .floating-chat-button:hover {
-
   transform: scale(1.05);
 }
 
 /* Imagen botón flotante */
 .floating-chat-image {
-
   width: 55px;
   height: 55px;
-
   object-fit: contain;
 }
 
 /* VENTANA CHAT */
 .chat-window {
-
   position: fixed;
-
   bottom: 20px;
   right: 20px;
-
   width: 420px;
   height: 650px;
-
   background: rgba(255,255,255,0.88);
-
   border-radius: 25px;
-
   overflow: hidden;
-
   z-index: 99999;
-
   backdrop-filter: blur(12px);
-
   border: 1px solid rgba(255,255,255,0.6);
-
-  box-shadow:
-    0 10px 40px rgba(0,0,0,0.25);
-
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
   display: flex;
-
   flex-direction: column;
 }
 
 /* Expandir */
 .expanded-chat {
-
   width: 650px;
   height: 760px;
 }
 
 /* Header Chat */
 .chat-window-header {
-
-  background:
-    linear-gradient(to bottom, #79c9ff, #1d68ff);
-
+  background: linear-gradient(to bottom, #79c9ff, #1d68ff);
   color: white;
-
   padding: 12px 15px;
-
   display: flex;
-
   justify-content: space-between;
-
   align-items: center;
 }
 
 /* Imagen Header */
 .chat-header-image {
-
   width: 40px;
   height: 40px;
 }
 
 /* Botones ventana */
 .window-action-btn {
-
   border: none;
-
   width: 32px;
   height: 32px;
-
   border-radius: 8px;
-
   background: rgba(255,255,255,0.25);
-
   color: white;
-
   font-weight: bold;
-
   transition: 0.3s;
 }
 
 .window-action-btn:hover {
-
   background: rgba(255,255,255,0.4);
 }
 
 .close-btn:hover {
-
   background: #ff4a4a;
 }
 
 /* Body chat */
 .chat-window-body {
-
   flex: 1;
-
   padding: 20px;
-
   overflow-y: auto;
 }
 
 /* Imagen chat */
 .chat-main-image {
-
   width: 120px;
-
-  filter:
-    drop-shadow(0 0 15px rgba(255,255,255,0.7));
+  filter: drop-shadow(0 0 15px rgba(255,255,255,0.7));
 }
 
 /* Historial */
 .chat-history {
-
   height: 220px;
-
   overflow-y: auto;
-
   background: rgba(255,255,255,0.35);
-
   border-radius: 20px;
-
   padding: 15px;
-
   border: 1px solid rgba(255,255,255,0.5);
 }
 
 /* Mensajes */
 .chat-message {
-
   margin-bottom: 12px;
-
   padding: 12px;
-
   border-radius: 15px;
 }
 
 /* Bot */
 .bot-message {
-
   background: rgba(139, 220, 255, 0.45);
 }
 
 /* Usuario */
 .user-message {
-
   background: rgba(255,255,255,0.8);
-
   border: 1px solid rgba(0,0,0,0.08);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-
-  .main-title {
-    font-size: 45px;
-  }
-
-  .presentation-title {
-    font-size: 40px;
-  }
-
-  .chat-window {
-
-    width: 95%;
-    right: 2.5%;
-    bottom: 10px;
-  }
-
-  .expanded-chat {
-
-    width: 95%;
-  }
-
-}
-
-/* --- Paleta de Colores y Fondo General Frutiger Aero --- */
-body {
-  /* 🍏 MODIFICADO: Eliminamos el linear-gradient plano que tapaba el fondo para que no actúe como pared sólida */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #1a3a5f;
-  position: relative;
-  z-index: 0;
-}
-
-/* --- Contenedores Estilo Cristal Brillante (Glossy Glass) --- */
+/* --- Contenedores Estilo Cristal canónico --- */
 .hero-window, 
 .presentation-card, 
 .chat-preview-card,
@@ -627,7 +410,7 @@ body {
   overflow: hidden;
 }
 
-/* Efecto de reflejo de luz diagonal sobre los contenedores */
+/* Efecto de reflejo de luz diagonal */
 .hero-window::before, .chat-preview-card::before {
   content: '';
   position: absolute;
@@ -638,14 +421,14 @@ body {
   border-radius: 20px 20px 0 0;
 }
 
-/* --- Títulos con Degradados Vibrantes --- */
+/* --- Títulos con Degradados --- */
 .presentation-title, .section-title, h4 {
   color: #0b62a4 !important;
   font-weight: 700;
   text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
-/* --- Botones con Efecto Orbe / Gel Líquido (Glossy Buttons) --- */
+/* --- Botones con Efecto Orbe --- */
 .btn-primary, .open-chat-btn, .btn-info, .btn-success, .btn-warning {
   border-radius: 50px !important; 
   border: 1px solid rgba(255, 255, 255, 0.4) !important;
@@ -659,31 +442,26 @@ body {
               inset 0 4px 10px rgba(255, 255, 255, 0.6) !important;
 }
 
-/* Botón Azul Principal (Efecto Agua) */
-.btn-primary, .open-chat-btn {
+.btn-primary {
   background: linear-gradient(to bottom, #52bbf4 0%, #0076de 50%, #005eb6 100%) !important;
   color: white !important;
 }
 
-/* Botón Verde (Efecto Naturaleza / Hoja) */
 .btn-success {
   background: linear-gradient(to bottom, #96e642 0%, #5cb811 50%, #448809 100%) !important;
   color: white !important;
 }
 
-/* Botón Amarillo/Naranja (Efecto Sol) */
 .btn-warning {
   background: linear-gradient(to bottom, #ffdb4d 0%, #ffa200 50%, #d47a00 100%) !important;
   color: white !important;
 }
 
-/* Botón Cyan/Celeste (Efecto Aire) */
 .btn-info {
   background: linear-gradient(to bottom, #76f3ff 0%, #17b0cb 50%, #0b7f94 100%) !important;
   color: white !important;
 }
 
-/* Efecto Hover: Brillo extra al pasar el mouse */
 .btn-primary:hover, .open-chat-btn:hover, .btn-success:hover, .btn-warning:hover, .btn-info:hover {
   transform: translateY(-2px);
   filter: brightness(1.15);
@@ -692,7 +470,7 @@ body {
               inset 0 4px 15px rgba(255, 255, 255, 0.8) !important;
 }
 
-/* --- Barra del Buscador y Scrollspy --- */
+/* --- Barra del Buscador y Inputs --- */
 .form-control {
   background: rgba(255, 255, 255, 0.7) !important;
   border: 1px solid #70c0e8 !important;
@@ -705,7 +483,7 @@ body {
   box-shadow: 0 0 8px rgba(0, 118, 222, 0.5) !important;
 }
 
-/* --- Botón Multimedia de Música (Estilo Burbuja Glossy Frutiger Aero) --- */
+/* --- Botón Multimedia de Música (Estilo Burbuja Frutiger Aero) --- */
 .btn-glossy-music {
   background: linear-gradient(to bottom, #76f3ff 0%, #17b0cb 50%, #0b7f94 100%) !important;
   border-radius: 50px !important;
@@ -733,7 +511,7 @@ body {
   transform: scale(0.97);
 }
 
-/* ─── IMÁGENES LATERALES FRUTIGER AERO OTIMIZADAS ─── */
+/* ─── IMÁGENES LATERALES FRUTIGER AERO OPTIMIZADAS ─── */
 body::before,
 body::after {
   content: "";
@@ -763,12 +541,13 @@ body::after {
   background-image: url('https://preview.redd.it/frutiger-aero-meowl-v0-x9yz5e8a71tf1.jpg?width=640&crop=smart&auto=webp&s=6144e45e9daa41c5a6bf0ca848e43baf481cfc8a') !important;
 }
 
-/* ─── RESPONSIVE: OCULTAR EN PANTALLAS PEQUEÑAS ─── */
+/* Responsive */
 @media (max-width: 1150px) {
   body::before,
   body::after {
     display: none !important;
   }
+
 }
 /* Desplazamiento suave al tocar el menú */
 html {
@@ -813,4 +592,320 @@ html {
   background: rgba(255,255,255,0.45);
   border-radius: 20px;
   padding: 15px;
+  }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main-title {
+    font-size: 45px;
+  }
+
+  
+
+  .presentation-title {
+    font-size: 40px;
+  }
+
+  .chat-window {
+    width: 95%;
+    right: 2.5%;
+    bottom: 10px;
+  }
+
+  .expanded-chat {
+    width: 95%;
+  }
+}
+
+/* src/App.css */
+
+/* --- PALETA DE COLORES FRUTIGER AERO (VISTA/7) --- */
+:root {
+  --aero-blue-light: #bbe4f9;
+  --aero-blue-medium: #7fdcff;
+  --aero-blue-deep: #0a73be;
+  --aero-green-light: #b4f1b4;
+  --aero-green-medium: #6be36b;
+  --aero-glass-white: rgba(255, 255, 255, 0.45);
+  --aero-border-light: rgba(255, 255, 255, 0.7);
+}
+
+/* --- CONTENEDOR GENERAL DE LA SECCIÓN --- */
+.interactive-frutiger-index {
+  position: relative;
+  border-radius: 25px;
+  /* Fondo vibrante agua/cielo que imita el diseño de referencia */
+  background: 
+    linear-gradient(135deg, rgba(180, 228, 249, 0.5) 0%, rgba(200, 241, 180, 0.5) 50%, rgba(100, 190, 240, 0.6) 100%),
+    url('https://i.pinimg.com/originals/a0/a2/87/a0a28723654477c7f3b8900445d475c1.jpg'); /* Una imagen de fondo marino/cielo estilo Vista */
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Burbujas de cristal de fondo sobre el contenedor principal */
+.glass-bubble-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.3) 0%, transparent 8%),
+    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 6%),
+    radial-gradient(circle at 40% 70%, rgba(255, 255, 255, 0.3) 0%, transparent 10%),
+    radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.3) 0%, transparent 5%);
+  z-index: 1;
+}
+
+/* --- TÍTULOS CON DEGRADADO Y SOMBRA GLOSSY --- */
+.section-title.text-primary-aero {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+  text-shadow: 
+    0px 2px 3px rgba(255, 255, 255, 0.9),
+    0px 3px 8px rgba(10, 115, 190, 0.3);
+  background: linear-gradient(to bottom, #bbf0ff 0%, #2bb2ff 40%, #0056d6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+/* --- COLUMNA IZQUIERDA: MENÚ DE TEMAS --- */
+.frutiger-sidebar {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  border: 1px solid var(--aero-border-light);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 2;
+}
+
+.sidebar-title {
+  color: var(--aero-blue-deep);
+  font-weight: 800;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Botones con forma de burbuja glossy */
+.frutiger-bubble-list .frutiger-bubble-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--aero-glass-white) !important;
+  border: 1px solid var(--aero-border-light) !important;
+  color: #12456b !important;
+  font-weight: 700;
+  border-radius: 50px !important; /* Forma de burbuja */
+  padding: 10px 20px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none !important;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.05),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Efecto hover: burbuja brillante */
+.frutiger-bubble-list .frutiger-bubble-item:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: rgba(118, 243, 255, 0.35) !important;
+  border-color: rgba(118, 243, 255, 0.6) !important;
+  color: #0d4a9c !important;
+  box-shadow: 
+    0 6px 10px rgba(118, 243, 255, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Efecto activo (burbuja seleccionada): orbe azul */
+.frutiger-bubble-list .frutiger-bubble-item.active {
+  background: linear-gradient(to bottom, #7bdbff 0%, #3478ff 50%, #0056d6 100%) !important;
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+  box-shadow: 
+    0 5px 12px rgba(0, 118, 222, 0.4),
+    inset 0 -4px 8px rgba(0, 0, 0, 0.15),
+    inset 0 3px 6px rgba(255, 255, 255, 0.6) !important;
+}
+
+/* --- COLUMNA DERECHA: VISUALIZADOR DE TEXTO --- */
+.frutiger-scrollspy {
+  background: #91bded66 !important;
+  border-radius: 20px !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--aero-border-light) !important;
+  height: 450px !important; /* Altura fija para el scroll */
+  position: relative;
+  z-index: 2;
+  box-shadow: 
+    inset 0 0 15px rgba(0, 0, 0, 0.03),
+    0 5px 15px rgba(18, 87, 160, 0.1) !important;
+  padding-top: 3rem !important;
+}
+
+/* Superposición brillante sobre el scrollspy (capa de cristal Vista) */
+.scrollspy-glossy-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 50%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.35) 0%, transparent 100%);
+
+  border-radius: 20px 20px 0 0;
+  
+  /* 🪄 LA LÍNEA MÁGICA: Hace que el mouse ignore esta capa y cliquee lo que está abajo */
+  pointer-events: none !important; 
+}
+
+.frutiger-scrollspy h4 {
+  color: #164ced !important;
+  font-weight: 700;
+  font-family: 'Segoe UI', sans-serif;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.frutiger-scrollspy p {
+  color: #035dc5 !important;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Divisores translúcidos */
+.frutiger-divider {
+  border-top: 1px solid rgba(18, 115, 190, 0.15);
+  opacity: 1;
+}
+
+/* --- PERSONALIZACIÓN DE LA BARRA DE SCROLL FRUTIGER AERO --- */
+.frutiger-scrollspy::-webkit-scrollbar {
+  width: 12px;
+}
+
+.frutiger-scrollspy::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin: 10px 0;
+}
+
+.frutiger-scrollspy::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #aae7ff, #0a73be); /* Barra de scroll gel líquido */
+  border-radius: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+.frutiger-scrollspy::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #7bdcff, #005eb6);
+}
+
+/* ==========================================================================
+   🔓 PARCHE DEFINITIVO PARA REPARAR CLICS Y CURSORES (FRUTIGER AERO)
+   ========================================================================== */
+
+/* 1. Obligamos al mouse a ignorar todas las capas decorativas y reflejos de cristal */
+.hero-window::before, 
+.chat-preview-card::before, 
+.scrollspy-glossy-overlay,
+body::before,
+body::after {
+  pointer-events: none !important;
+}
+
+/* 2. Traemos al frente la barra de navegación y aseguramos su interactividad */
+.vista-navbar {
+  position: sticky !important;
+  top: 10px;
+  z-index: 999 !important;
+  pointer-events: auto !important;
+}
+
+/* 3. Forzamos a que aparezca la manita del cursor en todos los botones y enlaces */
+.vista-link, 
+.btn-glossy-music, 
+.nav-item, 
+.nav-link,
+.frutiger-bubble-item,
+.open-chat-btn,
+.btn-primary {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+/* ==========================================================================
+   🔒 PARCHE EXTRA: DESBLOQUEO TOTAL DE LA BARRA SUPERIOR (ZONA CÍRCULO ROJO)
+   ========================================================================== */
+
+/* 1. Forzamos a la barra superior y a todo lo que tiene adentro a ponerse al frente de cualquier reflejo */
+.window-top-bar {
+  position: relative !important;
+  z-index: 99999 !important; /* La subimos al nivel máximo de prioridad */
+  pointer-events: auto !important;
+}
+
+/* 2. Liberamos específicamente los botones circulares, el buscador y el texto de esa barra */
+.window-top-bar *, 
+.vista-circle-btn, 
+.window-search, 
+.form-control {
+  position: relative !important;
+  z-index: 100000 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* 3. Nos aseguramos de que el input para escribir en el buscador use el cursor de texto correcto */
+.window-search .form-control {
+  cursor: text !important;
+}
+
+/* 4. Quitamos cualquier contenedor invisible de Bootstrap que se desborde sobre la barra */
+.nav-scroller {
+  position: sticky !important;
+  top: 10px !important;
+  z-index: 9998 !important;
+}
+
+/* ==========================================================================
+   💥 TRIPLE PARCHE FORZADO DE CAPAS (DESBLOQUEO TOTAL)
+   ========================================================================== */
+
+/* 1. Elevamos drásticamente el botón de música y su contenedor directo */
+.btn-glossy-music {
+  position: relative !important;
+  z-index: 9999999 !important;
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* 2. Forzamos a toda la barra superior a ser el elemento con mayor prioridad de la página */
+.window-top-bar, 
+.window-top-bar * {
+  z-index: 9999998 !important;
+  pointer-events: auto !important;
+}
+
+/* 3. Castigamos a los fondos e imágenes laterales bajándolos de nivel por si acaso */
+body::before,
+body::after,
+.interactive-frutiger-index::before,
+.glass-bubble-bg {
+  z-index: -10 !important;
+  pointer-events: none !important;
+}
+
+/* ==========================================================================
+   🐟 EFECTO ACUARIO FRUTIGER AERO (PECES AL FONDO SIN BLOQUEAR CLICS)
+   ========================================================================== */
+.vista-fish-aquarium {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 65%; /* Qué tan arriba nadarán tus peces */
+  background-size: 280px; /* Aquí controlas qué tan grandes o chicos se ven */
+  background-repeat: repeat-x; 
+  background-position: bottom;
+  opacity: 0.65; 
+  z-index: 1; 
+  pointer-events: none !important; /* Crucial para que no te bloquee los botones */
 }

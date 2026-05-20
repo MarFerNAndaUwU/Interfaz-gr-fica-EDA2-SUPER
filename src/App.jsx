@@ -2,6 +2,7 @@ import './App.css';
 import React, { useState, useRef } from 'react'; // 1. Importamos useState para la "memoria"
 import miniRodri from './assets/minirodri.png';
 import musicaFondo from './assets/musica-fondo.mp3';
+import pecesGilet from './assets/peces-acuario.gif'; // Tu nuevo GIF local
 
 function App() {
 
@@ -90,15 +91,21 @@ function App() {
       <audio ref={audioRef} src={musicaFondo} loop />
 
       {/* Encabezado Principal */}
-      <header id="inicio" className="hero-window mb-4 section-offset">
+
+      <header id="inicio" className="hero-window mb-4 section-offset" style={{ position: 'relative', overflow: 'hidden' }}>
+        
+        {/* 🐟 CAPA MÁGICA DE PECES (Fondo de acuario sin bloquear clics) */}
+        <div className="vista-fish-aquarium" style={{ backgroundImage: `url(${pecesGilet})` }}></div>
+
+
         {/* Barra tipo Windows Vista */}
-        <div className="window-top-bar">
+        <div className="window-top-bar" style={{ position: 'relative', zIndex: 10 }}>
           <div className="window-buttons-left">
             <button className="vista-circle-btn">◀</button>
             <button className="vista-circle-btn">▶</button>
           </div>
 
-          {/* 🍏 AQUÍ COLOCAMOS EL BOTÓN MULTIMEDIA ESTILO GLOSSY */}
+          {/* 🍏 BOTÓN MULTIMEDIA ESTILO GLOSSY */}
           <button onClick={controlarMusica} className="btn-glossy-music px-3 py-1">
             {musicaActiva ? '🎵 Pausar Música' : '🔇 Activar Música'}
           </button>
@@ -113,7 +120,7 @@ function App() {
         </div>
 
         {/* Contenido Principal */}
-        <div className="hero-content text-center">
+        <div className="hero-content text-center" style={{ position: 'relative', zIndex: 5 }}>
           <img
             src={miniRodri}
             alt="MiniRodri"
@@ -185,61 +192,69 @@ function App() {
         </div>
       </div>
 
-      {/* SECCIÓN PRINCIPAL: ÍNDICE Y CONTENIDO TOTALMENTE SIMÉTRICOS */}
-      <div id="algoritmos" className="row g-4 mb-4 section-offset">
-        <h3 className="section-title mb-3">Índice Temático Interactivo</h3>
+
+     {/* SECCIÓN PRINCIPAL: ÍNDICE Y CONTENIDO FRUTIGER AERO */}
+<div id="algoritmos" className="container py-4 interactive-frutiger-index section-offset">
+  <div className="glass-bubble-bg"></div> {/* Capa para las burbujas de fondo */}
+  
+  <h3 className="section-title text-center text-primary-aero mb-4">
+    Índice Temático Interactivo
+  </h3>
+
+  <div className="row g-4 align-items-stretch">
+
+    {/* Columna Izquierda: Menú con botones de burbuja */}
+    <div className="col-md-4">
+      <div className="frutiger-sidebar p-3 d-flex flex-column gap-2 justify-content-center h-100">
+        <h4 className="sidebar-title text-center mb-3">Temas Disponibles</h4>
         
-        {/* Columna Izquierda: Menú del Scrollspy limpio sin elementos extra */}
-        <div className="col-md-4">
-          <div 
-            className="p-3 bg-light rounded shadow-sm border border-light-subtle d-flex flex-column justify-content-center"
-            style={{ height: '450px' }}
-          >
-            <h4 className="sidebar-title text-center mb-4">Temas Disponibles</h4>
-            
-            <div id="simple-list-example" className="d-flex flex-column gap-3 simple-list-example-scrollspy text-center">
-              <a className="p-2 rounded btn btn-outline-primary btn-sm text-start fw-medium" href="#simple-list-item-1">• Merge Sort</a>
-              <a className="p-2 rounded btn btn-outline-primary btn-sm text-start fw-medium" href="#simple-list-item-2">• Quick Sort</a>
-              <a className="p-2 rounded btn btn-outline-primary btn-sm text-start fw-medium" href="#simple-list-item-3">• Árboles Binarios</a>
-              <a className="p-2 rounded btn btn-outline-primary btn-sm text-start fw-medium" href="#simple-list-item-4">• Estructuras de Grafos</a>
-              <a className="p-2 rounded btn btn-outline-primary btn-sm text-start fw-medium" href="#simple-list-item-5">• Complejidad Algorítmica</a>
-            </div>
-          </div>
-        </div>
-
-        {/* Columna Derecha: Contenido Desplazable (Scrollspy) */}
-        <div className="col-md-8">
-          <div 
-            data-bs-spy="scroll" 
-            data-bs-target="#simple-list-example" 
-            data-bs-offset="0" 
-            data-bs-smooth-scroll="true" 
-            className="scrollspy-example bg-light p-4 rounded shadow-sm border border-light-subtle" 
-            tabIndex="0"
-            style={{ height: '450px', overflowY: 'auto', position: 'relative' }}
-          >
-            <h4 id="simple-list-item-1" className="text-primary mt-2">1. Merge Sort</h4>
-            <p>Es un algoritmo de ordenamiento basado en la técnica de <em>Divide y Vencerás</em>. Divide el arreglo recursivamente a la mitad hasta tener subarreglos de tamaño 1, para luego fusionarlos (merge) de manera ordenada en tiempo lineal $O(n \log n)$.</p>
-            <hr />
-
-            <h4 id="simple-list-item-2" className="text-primary mt-4">2. Quick Sort</h4>
-            <p>Otro algoritmo clásico de ordenamiento que utiliza un elemento llamado "pivote" para particionar la estructura. Coloca los menores a un lado y los mayores al otro, repitiendo el proceso de manera recursiva.</p>
-            <hr />
-
-            <h4 id="simple-list-item-3" className="text-primary mt-4">3. Árboles Binarios</h4>
-            <p>Estructuras de datos no lineales y jerárquicas. Cada nodo padre puede tener como máximo dos hijos (izquierdo y derecho). Son fundamentales para búsquedas rápidas como en los árboles binarios de búsqueda (BST).</p>
-            <hr />
-
-            <h4 id="simple-list-item-4" className="text-primary mt-4">4. Estructuras de Grafos</h4>
-            <p>Un conjunto de vértices (nodos) conectados a través de aristas (relaciones). Se pueden representar mediante matrices de adyacencia o listas de adyacencia, indispensables para redes y mapas.</p>
-            <hr />
-
-            <h4 id="simple-list-item-5" className="text-primary mt-4">5. Complejidad Algorítmica</h4>
-            <p>Estudio del rendimiento de los algoritmos mediante la notación Big O ($O$). Nos permite evaluar la eficiencia temporal y espacial a medida que el tamaño de los datos de entrada ($n$) crece exponencialmente.</p>
-          </div>
+        <div id="simple-list-example" className="d-flex flex-column gap-3 frutiger-bubble-list">
+          <a className="frutiger-bubble-item active" href="#simple-list-item-1">• Ordenación por fusión</a>
+          <a className="frutiger-bubble-item" href="#simple-list-item-2">• Clasificación rápida</a>
+          <a className="frutiger-bubble-item" href="#simple-list-item-3">• Árboles Binarios</a>
+          <a className="frutiger-bubble-item" href="#simple-list-item-4">• Estructuras de Grafos</a>
+          <a className="frutiger-bubble-item" href="#simple-list-item-5">• Complejidad Algorítmica</a>
         </div>
       </div>
-      {/* SECCIÓN DOCUMENTACIÓN */}
+    </div>
+      
+    {/* Columna Derecha: Contenido Desplazable (Scrollspy) */}
+    <div className="col-md-8">
+      <div 
+        data-bs-spy="scroll" 
+        data-bs-target="#simple-list-example" 
+        data-bs-offset="0" 
+        data-bs-smooth-scroll="true" 
+        className="frutiger-scrollspy bg-light p-4 rounded shadow-sm border border-light-subtle h-100" 
+        tabIndex="0"
+        style={{ overflowY: 'auto', position: 'relative' }}
+      >
+        <div className="scrollspy-glossy-overlay"></div> {/* Superposición brillante */}
+
+        <h4 id="simple-list-item-1" className="text-primary mt-2">1. Ordenación por fusión</h4>
+        <p>Es un algoritmo de ordenamiento basado en la técnica de <em>Divide y Vencerás</em>. Divide el arreglo recursivamente a la mitad hasta tener subarreglos de tamaño 1, para luego fusionarlos (merge) de manera ordenada en tiempo lineal $O(n \log n)$.</p>
+        <hr className="frutiger-divider" />
+
+        <h4 id="simple-list-item-2" className="text-primary mt-4">2. Clasificación rápida</h4>
+        <p>Otro algoritmo clásico de ordenamiento que utiliza un elemento llamado "pivote" para particionar la estructura. Coloca los menores a un lado y los mayores al otro, repitiendo el proceso de manera recursiva.</p>
+        <hr className="frutiger-divider" />
+
+        <h4 id="simple-list-item-3" className="text-primary mt-4">3. Árboles Binarios</h4>
+        <p>Estructuras de datos no lineales y jerárquicas. Cada nodo padre puede tener como máximo dos hijos (izquierdo y derecho). Son fundamentales para búsquedas rápidas como en los árboles binarios de búsqueda (BST).</p>
+        <hr className="frutiger-divider" />
+
+        <h4 id="simple-list-item-4" className="text-primary mt-4">4. Estructuras de Grafos</h4>
+        <p>Un conjunto de vértices (nodos) conectados a través de aristas (relaciones). Se pueden representar mediante matrices de adyacencia o listas de adyacencia, indispensables para redes y mapas.</p>
+        <hr className="frutiger-divider" />
+
+        <h4 id="simple-list-item-5" className="text-primary mt-4">5. Complejidad Algorítmica</h4>
+        <p>Estudio del rendimiento de los algoritmos mediante la notación Big O ($O$). Nos permite evaluar la eficiencia temporal y espacial a medida que el tamaño de los datos de entrada ($n$) crece exponencialmente.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{/* SECCIÓN DOCUMENTACIÓN */}
   <div id="documentacion" className="documentation-section section-offset mb-5">
   <h3 className="section-title text-center mb-4">Documentación</h3>
 
@@ -248,8 +263,7 @@ function App() {
       <div className="info-card">
         <h4>Códigos</h4>
         <p>
-          En esta sección podremos agregar ejemplos de código sobre algoritmos,
-          estructuras de datos, árboles, grafos y ordenamientos.
+          En esta sección podremos agregar ejemplos de código sobre algoritmos
         </p>
       </div>
     </div>
@@ -258,15 +272,15 @@ function App() {
       <div className="info-card">
         <h4>Explicaciones</h4>
         <p>
-          Aquí podremos colocar documentación, teoría, imágenes, diagramas
-          o pasos para entender cada tema de EDA II.
+          Aquí podremos colocar documentación
         </p>
       </div>
     </div>
   </div>
 </div>
 
-{/* SECCIÓN NOSOTROS */}
+    {/* SECCIÓN NOSOTROS */}
+
 <div id="nosotros" className="team-section section-offset mb-5">
   <h3 className="section-title text-center mb-4">Nosotros</h3>
 
@@ -280,20 +294,19 @@ function App() {
 
     <h4>Equipo creador de MiniRodri</h4>
     <p>
-      En esta sección podremos agregar los nombres de los integrantes del equipo,
-      número de cuenta, grupo, materia y la descripción de lo que hizo cada persona.
+      En esta sección podremos agregar los nombres de los integrantes del equipo
     </p>
 
     <div className="team-placeholder">
-      <p><strong>Integrante 1:</strong> Nombre y aportación</p>
-      <p><strong>Integrante 2:</strong> Nombre y aportación</p>
-      <p><strong>Integrante 3:</strong> Nombre y aportación</p>
+      <p><strong>Integrante 1:</strong> Nombre</p>
+      <p><strong>Integrante 2:</strong> Nombre</p>
+      <p><strong>Integrante 3:</strong> Nombre</p>
     </div>
   </div>
 </div> 
 
       {/* SECCIÓN INFERIOR COMPLETA: MANTENIENDO EL DISEÑO CON BOTONES DE COLORES */}
-      <div id="trabajar" className="row justify-content-center mb-5 section-offset"> 
+      <div id="trabajar" className="row justify-content-center mb-5 section-offset">
         <div className="col-md-8">
           <div className="chat-preview-card p-4 text-center bg-light rounded shadow-sm border border-light-subtle">
             <img
