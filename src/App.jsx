@@ -90,7 +90,7 @@ function App() {
       <audio ref={audioRef} src={musicaFondo} loop />
 
       {/* Encabezado Principal */}
-      <header className="hero-window mb-4">
+      <header id="inicio" className="hero-window mb-4 section-offset">
         {/* Barra tipo Windows Vista */}
         <div className="window-top-bar">
           <div className="window-buttons-left">
@@ -134,27 +134,27 @@ function App() {
 <div className="nav-scroller py-2 mb-4 vista-navbar">
   <nav className="nav justify-content-between px-3"> 
     
-    <a className="nav-item nav-link active vista-link d-flex align-items-center gap-2" href="#">
+    <a className="nav-item nav-link active vista-link d-flex align-items-center gap-2" href="#inicio">
       <img src="https://img1.picmix.com/output/stamp/normal/2/8/1/9/2469182_9b42d.png" alt="Inicio" width="70" height="70" style={{ objectFit: 'contain' }} />
       Inicio
     </a>
     
-    <a className="nav-item nav-link vista-link d-flex align-items-center gap-2" href="#">
+    <a className="nav-item nav-link vista-link d-flex align-items-center gap-2" href="#algoritmos">
       <img src="https://www.pngall.com/wp-content/uploads/17/Frutiger-Aero-Distinctive-Type-Style-PNG.png" alt="Algoritmos" width="40" height="40" style={{ objectFit: 'contain' }} />
       Algoritmos
     </a>
     
-    <a className="nav-item nav-link vista-link d-flex align-items-center gap-2" href="#">
+    <a className="nav-item nav-link vista-link d-flex align-items-center gap-2" href="#documentacion">
       <img src="https://images.icon-icons.com/991/PNG/512/Windows7_icon-icons.com_75251.png" alt="Documentación" width="32" height="32" style={{ objectFit: 'contain' }} />
       Documentación
     </a>
     
-    <a className="nav-item nav-link vista-link d-flex align-items-center gap-2" href="#">
+    <a className="nav-item nav-link vista-link d-flex align-items-center gap-2" href="#nosotros">
       <img src="https://www.pngall.com/wp-content/uploads/17/Frutiger-Aero-Artistic-Font-Showcase-PNG.png" alt="Nosotros" width="70" height="70" style={{ objectFit: 'contain' }} />
       Nosotros
     </a>
     
-    <a className="nav-item nav-link vista-link d-flex align-items-center gap-2" href="#">
+    <a className="nav-item nav-link vista-link d-flex align-items-center gap-2" href="#trabajar">
       <img src="https://pbs.twimg.com/media/F0v3cN-aQAECTcf.png" alt="¡A trabajar!" width="32" height="32" style={{ objectFit: 'contain' }} />
       ¡A trabajar!
     </a>
@@ -186,7 +186,7 @@ function App() {
       </div>
 
       {/* SECCIÓN PRINCIPAL: ÍNDICE Y CONTENIDO TOTALMENTE SIMÉTRICOS */}
-      <div className="row g-4 mb-4">
+      <div id="algoritmos" className="row g-4 mb-4 section-offset">
         <h3 className="section-title mb-3">Índice Temático Interactivo</h3>
         
         {/* Columna Izquierda: Menú del Scrollspy limpio sin elementos extra */}
@@ -239,9 +239,61 @@ function App() {
           </div>
         </div>
       </div>
+      {/* SECCIÓN DOCUMENTACIÓN */}
+  <div id="documentacion" className="documentation-section section-offset mb-5">
+  <h3 className="section-title text-center mb-4">Documentación</h3>
+
+  <div className="row g-4">
+    <div className="col-md-6">
+      <div className="info-card">
+        <h4>Códigos</h4>
+        <p>
+          En esta sección podremos agregar ejemplos de código sobre algoritmos,
+          estructuras de datos, árboles, grafos y ordenamientos.
+        </p>
+      </div>
+    </div>
+
+    <div className="col-md-6">
+      <div className="info-card">
+        <h4>Explicaciones</h4>
+        <p>
+          Aquí podremos colocar documentación, teoría, imágenes, diagramas
+          o pasos para entender cada tema de EDA II.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{/* SECCIÓN NOSOTROS */}
+<div id="nosotros" className="team-section section-offset mb-5">
+  <h3 className="section-title text-center mb-4">Nosotros</h3>
+
+  <div className="info-card text-center">
+    <img
+      src={miniRodri}
+      alt="MiniRodri"
+      className="chat-preview-img mb-3"
+      style={{ width: '90px', height: 'auto' }}
+    />
+
+    <h4>Equipo creador de MiniRodri</h4>
+    <p>
+      En esta sección podremos agregar los nombres de los integrantes del equipo,
+      número de cuenta, grupo, materia y la descripción de lo que hizo cada persona.
+    </p>
+
+    <div className="team-placeholder">
+      <p><strong>Integrante 1:</strong> Nombre y aportación</p>
+      <p><strong>Integrante 2:</strong> Nombre y aportación</p>
+      <p><strong>Integrante 3:</strong> Nombre y aportación</p>
+    </div>
+  </div>
+</div> 
 
       {/* SECCIÓN INFERIOR COMPLETA: MANTENIENDO EL DISEÑO CON BOTONES DE COLORES */}
-      <div className="row justify-content-center mb-5">
+      <div id="trabajar" className="row justify-content-center mb-5 section-offset"> 
         <div className="col-md-8">
           <div className="chat-preview-card p-4 text-center bg-light rounded shadow-sm border border-light-subtle">
             <img

@@ -184,12 +184,13 @@ body {
 .vista-navbar {
 
   background: rgba(255,255,255,0.35);
-
   border-radius: 20px;
-
   backdrop-filter: blur(10px);
-
   border: 1px solid rgba(255,255,255,0.5);
+
+  position: sticky;
+  top: 10px;
+  z-index: 9998;
 }
 
 /* Links */
@@ -768,4 +769,48 @@ body::after {
   body::after {
     display: none !important;
   }
+}
+/* Desplazamiento suave al tocar el menú */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Separación para que las secciones no queden pegadas arriba */
+.section-offset {
+  scroll-margin-top: 25px;
+}
+
+/* Tarjetas nuevas para documentación y nosotros */
+.documentation-section,
+.team-section {
+  background: rgba(255,255,255,0.4);
+  border-radius: 30px;
+  padding: 35px;
+  border: 1px solid rgba(255,255,255,0.6);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.info-card {
+  background: rgba(255,255,255,0.45);
+  border-radius: 25px;
+  padding: 25px;
+  border: 1px solid rgba(255,255,255,0.7);
+  box-shadow:
+    0 8px 25px rgba(31, 135, 240, 0.18),
+    inset 0 1px 4px rgba(255,255,255,0.6);
+  color: #24496f;
+}
+
+.info-card h4 {
+  color: #0b62a4 !important;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.team-placeholder {
+  margin-top: 20px;
+  background: rgba(255,255,255,0.45);
+  border-radius: 20px;
+  padding: 15px;
 }
