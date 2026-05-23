@@ -31,48 +31,52 @@ function App() {
   // 3. Estados para controlar la ventana del chatbot
   const [chatAbierto, setChatAbierto] = useState(false);
   const [chatExpandido, setChatExpandido] = useState(false);
+  const [cargando, setCargando] = useState(false);
 
   // 4. Función para enviar mensajes
-  const manejarEnvio = (e) => {
+  const manejarEnvio = async (e) => {
     e.preventDefault();
 
-    if (!mensaje.trim()) return;
+    if (!mensaje.trim() || cargando) return;
 
+    const preguntaUsuario = mensaje.trim();
     // Agregamos el mensaje del usuario al historial
-    const nuevoHistorial = [
-      ...chatLog,
-      { rol: 'usuario', texto: mensaje }
-    ];
-
-    setChatLog(nuevoHistorial);
-
-    // Respuestas básicas simuladas
-    let respuestaBot = 'Tengo información sobre algoritmos, grafos y estructuras 😊';
-
-    if (mensaje.toLowerCase().includes('merge')) {
-      respuestaBot = 'Merge Sort divide el arreglo en partes pequeñas y luego las ordena.';
-    }
-
-    if (mensaje.toLowerCase().includes('quick')) {
-      respuestaBot = 'Quick Sort usa un pivote para ordenar los elementos.';
-    }
-
-    if (mensaje.toLowerCase().includes('árbol')) {
-      respuestaBot = 'Los árboles son estructuras jerárquicas con nodos y ramas.';
-    }
-
-    if (mensaje.toLowerCase().includes('grafos')) {
-      respuestaBot = 'Los grafos conectan nodos mediante aristas.';
-    }
-
-    setTimeout(() => {
-      setChatLog((prevChat) => [
-        ...prevChat,
-        { rol: 'bot', texto: respuestaBot }
-      ]);
-    }, 500);
+    setChatLog((prevChat) => [
+      ...prevChat,
+      { rol: 'usuario', texto: preguntaUsuario }
+    ]);
 
     setMensaje('');
+    setCargando(true);
+
+   try{
+      const respuestaApi = await fetch('https://repo-chatbot-ia.onrender.com/preguntar', {
+        method: 'POST',
+        headers: {
+          'Content-Type' : 'application/json', 
+        },
+        body: JSON.stringify({ pregunta: preguntaUsuario }), 
+      });
+
+      if (!respuestaApi.ok){
+        throw new Error('Error en la respuesta del servidor');
+      }
+
+      const datos = await respuestaApi.json();
+
+      setChatLog((prevChat) => [
+        ...prevChat,
+        { rol: 'bot', texto: datos.respuesta } // 'respuesta' es la clave que retorna tu server.py
+      ]);
+   }catch (error) {
+      console.error('ERROR al conectar la IA:', error);
+      setChatLog((prevChat) => [
+        ...prevChat,
+        {rol: 'bot', texto: 'Lo siento, hubo un error al conectar con el servidor.' }
+      ]);
+   }finally {
+    setCargando(false);
+   }
   };
 
   // 5. Función para borrar el historial al cerrar
@@ -443,15 +447,17 @@ function App() {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Escribe tu pregunta..."
+                placeholder={cargando ? "MiniRodri está pensando..." : "Escribe tu pregunta..."}
                 value={mensaje}
                 onChange={(e) => setMensaje(e.target.value)}
+                disabled={cargando} // <-- Bloquea la entrada para que no escriban mientras piensa
               />
               <button
                 type="submit"
                 className="btn btn-primary"
+                disabled={cargando} // <-- Bloquea el botón para evitar múltiples clics seguidos
               >
-                Enviar
+                {cargando ? '...' : 'Enviar'}
               </button>
             </form>
           </div>
