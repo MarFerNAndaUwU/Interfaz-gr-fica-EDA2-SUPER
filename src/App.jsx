@@ -31,42 +31,52 @@ function App() {
 
   const [chatAbierto, setChatAbierto] = useState(false);
   const [chatExpandido, setChatExpandido] = useState(false);
+  const [cargando, setCargando] = useState(false);
 
+  // 4. Función para enviar mensajes
   const manejarEnvio = async (e) => {
     e.preventDefault();
-    if (!mensaje.trim()) return;
 
-    const nuevoHistorial = [
-      ...chatLog,
-      { rol: 'usuario', texto: mensaje }
-    ];
-    setChatLog(nuevoHistorial);
-    setMensaje('');
+    if (!mensaje.trim() || cargando) return;
 
-    setChatLog((prev) => [
-      ...prev,
-      { rol: 'bot', texto: '⏳ MiniRodri está pensando...' }
+    const preguntaUsuario = mensaje.trim();
+    // Agregamos el mensaje del usuario al historial
+    setChatLog((prevChat) => [
+      ...prevChat,
+      { rol: 'usuario', texto: preguntaUsuario }
     ]);
 
-    try {
-      const response = await fetch(`${CHATBOT_URL}/preguntar`, {
+    setMensaje('');
+    setCargando(true);
+
+   try{
+      const respuestaApi = await fetch('https://repo-chatbot-ia.onrender.com/preguntar', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ pregunta: mensaje })
+        headers: {
+          'Content-Type' : 'application/json', 
+        },
+        body: JSON.stringify({ pregunta: preguntaUsuario }), 
       });
 
-      const data = await response.json();
+      if (!respuestaApi.ok){
+        throw new Error('Error en la respuesta del servidor');
+      }
 
-      setChatLog((prev) => [
-        ...prev.slice(0, -1),
-        { rol: 'bot', texto: data.respuesta }
+      const datos = await respuestaApi.json();
+
+      setChatLog((prevChat) => [
+        ...prevChat,
+        { rol: 'bot', texto: datos.respuesta } // 'respuesta' es la clave que retorna tu server.py
       ]);
-    } catch (error) {
-      setChatLog((prev) => [
-        ...prev.slice(0, -1),
-        { rol: 'bot', texto: '❌ Error al conectar con MiniRodri. Intenta de nuevo.' }
+   }catch (error) {
+      console.error('ERROR al conectar la IA:', error);
+      setChatLog((prevChat) => [
+        ...prevChat,
+        {rol: 'bot', texto: 'Lo siento, hubo un error al conectar con el servidor.' }
       ]);
-    }
+   }finally {
+    setCargando(false);
+   }
   };
 
   const cerrarChat = () => {
@@ -312,11 +322,18 @@ function App() {
               <input
                 type="text"
                 className="form-control"
-                placeholder="Escribe tu pregunta..."
+                placeholder={cargando ? "MiniRodri está pensando..." : "Escribe tu pregunta..."}
                 value={mensaje}
                 onChange={(e) => setMensaje(e.target.value)}
+                disabled={cargando} // <-- Bloquea la entrada para que no escriban mientras piensa
               />
-              <button type="submit" className="btn btn-primary">Enviar</button>
+              <button
+                type="submit"
+                className="btn btn-primary"
+                disabled={cargando} // <-- Bloquea el botón para evitar múltiples clics seguidos
+              >
+                {cargando ? '...' : 'Enviar'}
+              </button>
             </form>
           </div>
         </div>
