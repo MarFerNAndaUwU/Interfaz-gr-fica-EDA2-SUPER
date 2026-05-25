@@ -157,8 +157,12 @@ function App() {
               Estructuras de Datos
             </h1>
             <p className="presentation-text">
-              Bienvenido a MiniRodri 🍏, el asistente visual del proyecto EDA II.
-              Aprende algoritmos, árboles, grafos, ordenamientos y más de forma interactiva.
+              <strong>Bienvenido a MiniRodri 🍏</strong>
+              <br />
+            MiniRodri es un proyecto creado por estudiantes del grupo 6 de Estructuras de
+            Datos y Algoritmos II, con el propósito de ayudar a comprender mejor los temas
+            de la materia. En esta página se presentan explicaciones y ejemplos sobre algoritmos, árboles, grafos y otros conceptos
+            importantes. Ya sea que busques repasar conceptos clave o resolver dudas específicas sobre algunos algoritmos, ¡MiniRodri está aquí para guiarte paso a paso!
             </p>
           </div>
           <div className="col-md-5 text-center">
