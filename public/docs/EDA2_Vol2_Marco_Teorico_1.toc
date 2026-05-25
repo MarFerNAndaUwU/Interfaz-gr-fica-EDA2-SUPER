@@ -1,0 +1,34 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Algoritmos de Ordenamiento}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Fundamentos del Ordenamiento}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Bubble Sort}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Heap Sort y Estructura Heap}{2}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Quick Sort y Partición}{3}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Counting Sort — No Comparativo}{3}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Radix Sort — Ordenamiento por Dígitos}{3}{subsection.1.6}%
+\contentsline {subsection}{\numberline {1.7}Merge Sort — Divide y Vencerás}{3}{subsection.1.7}%
+\contentsline {subsection}{\numberline {1.8}Comparativa General}{4}{subsection.1.8}%
+\contentsline {section}{\numberline {2}Algoritmos de Búsqueda}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Fundamentos de la Búsqueda}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Búsqueda Lineal}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Búsqueda Binaria}{4}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Funciones Hash y Tablas de Dispersión}{5}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Resolución de Colisiones}{5}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Algoritmos de Grafos}{5}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Teoría de Grafos — Definiciones Fundamentales}{5}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Representaciones de Grafos}{5}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}BFS — Búsqueda por Amplitud}{6}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}DFS — Búsqueda en Profundidad}{6}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Árboles}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Conceptos Fundamentales}{6}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Árboles Binarios de Búsqueda (BST)}{6}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Recorridos de Árboles}{7}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Notaciones Aritméticas}{7}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Árboles B y B+}{7}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Archivos y Organización de Datos}{7}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Organización Lógica y Física}{7}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Métodos de Acceso}{8}{subsection.5.2}%
+\contentsline {section}{\numberline {6}Introducción a los Algoritmos Paralelos}{8}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Modelos de Paralelismo y Granularidad}{8}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Modelo PRAM}{8}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Análisis de Desempeño — Trabajo y Profundidad}{8}{subsection.6.3}%

@@ -1,0 +1,624 @@
+\documentclass[12pt, letterpaper]{article}
+
+% --- PAQUETES DE IDIOMA Y FORMATO ---
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx} 
+\usepackage{hyperref} 
+\usepackage{xcolor}   
+\usepackage{listings}
+\usepackage{booktabs} % Para tablas profesionales
+
+% --- CONFIGURACIÓN PARA EL CÓDIGO (Igual a reporte.tex) ---
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,         
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=4
+}
+\lstset{style=mystyle}
+
+% --- INICIO DEL DOCUMENTO ---
+\begin{document}
+	
+	% --- PORTADA ---
+	\begin{titlepage}
+		\centering
+		\vspace*{0.5cm}
+		
+		\includegraphics[width=2.8cm]{logo_unam.png} 
+		\hfill
+		\includegraphics[width=2.8cm]{logo_fi.png} 
+		\\[1.5cm]
+		
+		{\Huge \textbf{Universidad Nacional Autónoma de México}}\\[0.5cm]
+		{\LARGE \textbf{Facultad de Ingeniería}}\\[0.4cm]
+		{\Large Ingeniería en Computación}\\[1.3cm]
+		
+		{\Large \textbf{Materia:} Estructura de Datos y Algoritmos II}\\[0.4cm]
+		{\Large \textbf{Proyecto:} Visualizador Interactivo de Algoritmos}\\[1.3cm]
+		
+		{\LARGE \textbf{Documentación Técnica de Implementación de Algoritmos y Estructuras de Datos}}\\[0.5cm]
+		{\Large \textit{Volumen I - Código Fuente y Referencia Técnica}}\\[1cm]
+		
+		\begin{flushleft}
+			\Large \textbf{Equipo de Desarrollo - Backend:}\\
+			\vspace{0.2cm}
+			\normalsize
+			$\bullet$ Francisco José Coutiño Morales (\textit{Lead Backend Developer})\\ 
+			$\bullet$ Ernesto Flamenco Villaseñor (\textit{Backend Developer})\\
+			$\bullet$ Tlalli Ortega González (\textit{Backend Developer})\\
+			$\bullet$ Sergio Alonso Salcedo Sainz (\textit{Backend Developer})\\
+			$\bullet$ Orlando Ocampo Lagunas (\textit{Backend Developer})\\
+			$\bullet$ Aarón Salazar Castillo (\textit{Backend Developer})\\
+			$\bullet$ Erick Cruz Solís (\textit{Backend Developer})\\
+			$\bullet$ Augusto Gandarilla Ibarra (\textit{Backend Developer})\\
+			$\bullet$ Neri Israel Cruz Cárdenas (\textit{Backend Developer})\\
+		\end{flushleft}
+		
+		\vfill
+		{\large Periodo: 2026 -- 2}\\[1cm]
+	\end{titlepage}
+	
+	% --- ÍNDICE ---
+	\newpage
+	\tableofcontents
+	\newpage
+	
+	% =========================================================================
+	% --- SECCIÓN 1: ORDENAMIENTO ---
+	% =========================================================================
+	\section{Algoritmos de Ordenamiento}
+	Los algoritmos de ordenamiento reorganizan una colección de elementos según un criterio de comparación. El módulo implementa seis algoritmos clásicos, cada uno con seguimiento de pasos intermedios para facilitar su visualización y análisis didáctico. Todos los endpoints se exponen bajo el prefijo \texttt{/api/sorting/}.
+	
+	\subsection{Bubble Sort}
+	Algoritmo de ordenamiento \textit{in-place} que compara pares adyacentes e intercambia sus posiciones cuando están fuera de orden. En cada pasada, el elemento máximo \textit{burbujea} hacia su posición definitiva al final del arreglo.
+	
+	\textbf{Análisis de Complejidad:}
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{@{}lcc@{}}
+			\toprule
+			\textbf{Caso} & \textbf{Tiempo} & \textbf{Espacio} \\ \midrule
+			Mejor caso    & $O(n)$          & $O(1)$ \\
+			Caso promedio & $O(n^2)$        & $O(1)$ \\
+			Peor caso     & $O(n^2)$        & $O(1)$ \\ \bottomrule
+		\end{tabular}
+	\end{table}
+	
+	\textit{Archivo:} \texttt{app/algoritmos/ordenamiento/sorting\_algorithms.py}
+	
+	\begin{lstlisting}[language=Python, caption={Implementacion de Bubble Sort}]
+		def bubble_sort(arr: list) -> dict:
+		arr = arr.copy()
+		pasos = []
+		n = len(arr)
+		for i in range(n):
+		for j in range(0, n - i - 1):
+		if arr[j] > arr[j + 1]:
+		arr[j], arr[j + 1] = arr[j + 1], arr[j]
+		pasos.append({
+			"paso": len(pasos) + 1,
+			"arreglo": arr.copy(),
+			"comparando": [j, j + 1]
+		})
+		return {
+			"algoritmo": "Bubble Sort",
+			"resultado": arr,
+			"total_pasos": len(pasos),
+			"pasos": pasos
+		}
+	\end{lstlisting}
+	
+	\begin{quote}
+		\textbf{Endpoint Config:} \\
+		\texttt{POST /api/sorting/bubble-sort} \\
+		\textbf{Body:} \texttt{\{"arreglo": [int, ...]\}} \\
+		\textbf{Response:} \texttt{\{algoritmo, resultado, total\_pasos, pasos\}}
+	\end{quote}
+	
+	\subsection{Heap Sort}
+	Utiliza la estructura de datos \textit{Max-Heap} para ordenar. Primero construye un heap máximo en $O(n)$ y luego extrae la raíz repetidamente, reconstruyendo el heap en $O(\log n)$ por extracción. Garantiza $O(n \log n)$ en todos los casos.
+	
+	\textbf{Análisis de Complejidad:}
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{@{}lcc@{}}
+			\toprule
+			\textbf{Caso} & \textbf{Tiempo} & \textbf{Espacio} \\ \midrule
+			Mejor caso    & $O(n \log n)$   & $O(1)$ \\
+			Caso promedio & $O(n \log n)$   & $O(1)$ \\
+			Peor caso     & $O(n \log n)$   & $O(1)$ \\ \bottomrule
+		\end{tabular}
+	\end{table}
+	
+	\begin{lstlisting}[language=Python, caption={Implementacion de Heap Sort}]
+		def heap_sort(arr: list) -> dict:
+		arr = arr.copy()
+		pasos = []
+		n = len(arr)
+		# Construccion del Max-Heap (Floyd)
+		for i in range(n // 2 - 1, -1, -1):
+		_heapify(arr, n, i, pasos)
+		# Extraccion elemento a elemento
+		for i in range(n - 1, 0, -1):
+		arr[0], arr[i] = arr[i], arr[0]
+		pasos.append({"paso": len(pasos)+1, "arreglo": arr.copy()})
+		_heapify(arr, i, 0, pasos)
+		return {"algoritmo": "Heap Sort", "resultado": arr,
+			"total_pasos": len(pasos), "pasos": pasos}
+		
+		def _heapify(arr, n, i, pasos):
+		mayor = i
+		izq = 2 * i + 1
+		der = 2 * i + 2
+		if izq < n and arr[izq] > arr[mayor]: mayor = izq
+		if der < n and arr[der] > arr[mayor]: mayor = der
+		if mayor != i:
+		arr[i], arr[mayor] = arr[mayor], arr[i]
+		pasos.append({"intercambio": [i, mayor], "arreglo": arr.copy()})
+		_heapify(arr, n, mayor, pasos)
+	\end{lstlisting}
+	
+	\begin{quote}
+		\textbf{Endpoint Config:} \\
+		\texttt{POST /api/sorting/heap-sort} \\
+		\textbf{Body:} \texttt{\{"arreglo": [int, ...]\}}
+	\end{quote}
+	
+	\subsection{Quick Sort}
+	Algoritmo divide y vencerás que selecciona un \textit{pivote}, particiona el arreglo y aplica el proceso recursivamente. Excelente rendimiento práctico gracias a la localidad de referencia y bajo overhead de memoria.
+	
+	\textbf{Análisis de Complejidad:}
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{@{}lcc@{}}
+			\toprule
+			\textbf{Caso} & \textbf{Tiempo} & \textbf{Espacio} \\ \midrule
+			Mejor caso    & $O(n \log n)$   & $O(\log n)$ \\
+			Caso promedio & $O(n \log n)$   & $O(\log n)$ \\
+			Peor caso     & $O(n^2)$        & $O(n)$ \\ \bottomrule
+		\end{tabular}
+	\end{table}
+	
+	\begin{lstlisting}[language=Python, caption={Implementacion de Quick Sort}]
+		def quick_sort(arr: list) -> dict:
+		arr = arr.copy()
+		pasos = []
+		_quick_sort_recursivo(arr, 0, len(arr) - 1, pasos)
+		return {"algoritmo": "Quick Sort", "resultado": arr,
+			"total_pasos": len(pasos), "pasos": pasos}
+		
+		def _partition(arr, bajo, alto, pasos):
+		pivote = arr[alto]
+		i = bajo - 1
+		for j in range(bajo, alto):
+		if arr[j] <= pivote:
+		i += 1
+		arr[i], arr[j] = arr[j], arr[i]
+		pasos.append({"arreglo": arr.copy(), "pivote": alto,
+			"intercambio": [i, j]})
+		arr[i + 1], arr[alto] = arr[alto], arr[i + 1]
+		pasos.append({"arreglo": arr.copy(), "pivote_colocado": i + 1})
+		return i + 1
+	\end{lstlisting}
+	
+	\begin{quote}
+		\textbf{Endpoint Config:} \\
+		\texttt{POST /api/sorting/quick-sort} \\
+		\textbf{Body:} \texttt{\{"arreglo": [int, ...]\}}
+	\end{quote}
+	
+	\subsection{Counting Sort}
+	Algoritmo no comparativo. Cuenta ocurrencias, acumula conteos y construye el arreglo de salida. Rompe la cota matemática al explotar información adicional sobre el rango de valores.
+	
+	\textbf{Análisis de Complejidad:}
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{@{}lcc@{}}
+			\toprule
+			\textbf{Caso} & \textbf{Tiempo} & \textbf{Espacio} \\ \midrule
+			Todos los casos & $O(n + k)$ & $O(k)$ \\ \bottomrule
+		\end{tabular}
+	\end{table}
+	
+	\begin{lstlisting}[language=Python, caption={Implementacion de Counting Sort}]
+		def counting_sort(arr: list[int]) -> dict:
+		arr = arr.copy()
+		steps = [{"array": arr.copy(), "descripcion": "Array inicial"}]
+		maximo = max(arr)
+		minimo = min(arr)
+		rango  = maximo - minimo + 1
+		conteo = [0] * rango
+		for num in arr:
+		conteo[num - minimo] += 1
+		steps.append({"conteo": conteo.copy(),
+			"descripcion": "Conteo de ocurrencias"})
+		for i in range(1, rango):
+		conteo[i] += conteo[i - 1]
+		salida = [0] * len(arr)
+		for num in reversed(arr):
+		salida[conteo[num - minimo] - 1] = num
+		conteo[num - minimo] -= 1
+		return {"sorted_array": salida, "steps": steps,
+			"complexity": {"best": "O(n+k)", "worst": "O(n+k)",
+				"space": "O(k)"}}
+	\end{lstlisting}
+	
+	\begin{quote}
+		\textbf{Endpoint Config:} \\
+		\texttt{POST /api/sorting/counting-sort} \\
+		\textbf{Body:} \texttt{\{"array": [int, ...]\}}
+	\end{quote}
+	
+	\subsection{Radix Sort}
+	Ordena dígito a dígito (LSD a MSD) usando Counting Sort estable como subrutina. Para números con $d$ dígitos en base $b$: $O(d(n+b))$. Cuando $d$ es constante y $b = O(n)$, logra $O(n)$.
+	
+	\begin{lstlisting}[language=Python, caption={Implementacion de Radix Sort}]
+		def radix_sort(arr: list[int]) -> dict:
+		arr   = arr.copy()
+		steps = [{"array": arr.copy(), "descripcion": "Array inicial"}]
+		maximo = max(arr)
+		exp = 1
+		while maximo // exp > 0:
+		arr = counting_sort_por_digito(arr, exp)
+		steps.append({"array": arr.copy(),
+			"descripcion": f"Ordenado por exp={exp}"})
+		exp *= 10
+		return {"sorted_array": arr, "steps": steps,
+			"complexity": {"best": "O(nk)", "worst": "O(nk)",
+				"space": "O(n+k)"}}
+	\end{lstlisting}
+	
+	\begin{quote}
+		\textbf{Endpoint Config:} \\
+		\texttt{POST /api/sorting/radix-sort} \\
+		\textbf{Body:} \texttt{\{"array": [int, ...]\}}
+	\end{quote}
+	
+	\subsection{Merge Sort}
+	Divide el arreglo recursivamente en mitades y fusiona los resultados ordenados. Estable, garantiza $O(n \log n)$ en todos los casos. Estándar para ordenamiento externo (datos que no caben en RAM).
+	
+	\textbf{Análisis de Complejidad:}
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{@{}lcc@{}}
+			\toprule
+			\textbf{Caso} & \textbf{Tiempo} & \textbf{Espacio} \\ \midrule
+			Todos los casos & $O(n \log n)$ & $O(n)$ \\ \bottomrule
+		\end{tabular}
+	\end{table}
+	
+	\begin{lstlisting}[language=Python, caption={Implementacion de Merge Sort}]
+		def merge_sort_completo(arr: list[int]) -> dict:
+		arr = arr.copy()
+		steps = [{"array": arr.copy(), "descripcion": "Array inicial"}]
+		comparisons = [0]
+		sorted_arr = merge_sort(arr, steps, comparisons)
+		return {"sorted_array": sorted_arr, "steps": steps,
+			"comparisons": comparisons[0],
+			"complexity": {"best":  "O(n log n)",
+				"worst": "O(n log n)", "space": "O(n)"}}
+		
+		def merge_sort(arr, steps, comparisons):
+		if len(arr) <= 1:
+		return arr
+		mid = len(arr) // 2
+		L = merge_sort(arr[:mid], steps, comparisons)
+		R = merge_sort(arr[mid:], steps, comparisons)
+		return _merge(L, R, steps, comparisons)
+		
+		def _merge(L, R, steps, comparisons):
+		resultado = []
+		i = j = 0
+		while i < len(L) and j < len(R):
+		comparisons[0] += 1
+		if L[i] <= R[j]:
+		resultado.append(L[i]); i += 1
+		else:
+		resultado.append(R[j]); j += 1
+		resultado.extend(L[i:])
+		resultado.extend(R[j:])
+		steps.append({"array": resultado.copy(), "L": L, "R": R})
+		return resultado
+	\end{lstlisting}
+	
+	\begin{quote}
+		\textbf{Endpoint Config:} \\
+		\texttt{POST /api/sorting/merge-sort} \quad \textbf{Body:} \texttt{\{"array": [int, ...]\}} \\
+		\texttt{GET  /api/sorting/compare} \quad (Compara todos los algoritmos)
+	\end{quote}
+	
+	
+	% =========================================================================
+	% --- SECCIÓN 2: BÚSQUEDA ---
+	% =========================================================================
+	\section{Algoritmos de Búsqueda}
+	Los algoritmos de búsqueda localizan un elemento objetivo dentro de una estructura de datos. El módulo implementa búsqueda lineal, binaria y tabla hash, todos expuestos bajo el prefijo \texttt{/api/searching/}.
+	
+	\subsection{Búsqueda Lineal}
+	Recorre la lista secuencialmente comparando cada elemento con el objetivo. No requiere que la lista esté ordenada. $O(1)$ mejor caso, $O(n)$ peor caso.
+	
+	\begin{lstlisting}[language=Python, caption={Implementacion de Busqueda Lineal}]
+		def busqueda_lineal(array, objetivo):
+		comparaciones = 0
+		for i, elemento in enumerate(array):
+		comparaciones += 1
+		if elemento == objetivo:
+		return {"found": True, "index": i,
+			"comparisons": comparaciones,
+			"complexity": "O(n)"}
+		return {"found": False, "index": -1,
+			"comparisons": comparaciones,
+			"complexity": "O(n)"}
+	\end{lstlisting}
+	
+	\begin{quote}
+		\textbf{Endpoint Config:} \\
+		\texttt{POST /api/searching/linear} \\
+		\textbf{Body:} \texttt{\{"array": [...], "objetivo": valor\}}
+	\end{quote}
+	
+	\subsection{Búsqueda Binaria}
+	Divide el espacio de búsqueda a la mitad en cada paso. Requiere arreglo ordenado. Complejidad $O(\log n)$: con $10^9$ elementos, máximo 30 comparaciones.
+	
+	\begin{lstlisting}[language=Python, caption={Implementacion de Busqueda Binaria}]
+		def busqueda_binaria(array, objetivo):
+		izquierda = 0
+		derecha   = len(array) - 1
+		comparaciones = 0
+		while izquierda <= derecha:
+		comparaciones += 1
+		medio = (izquierda + derecha) // 2
+		if array[medio] == objetivo:
+		return {"found": True, "index": medio,
+			"comparisons": comparaciones,
+			"complexity": "O(log n)"}
+		elif array[medio] < objetivo:
+		izquierda = medio + 1
+		else:
+		derecha = medio - 1
+		return {"found": False, "index": -1,
+			"comparisons": comparaciones, "complexity": "O(log n)"}
+	\end{lstlisting}
+	
+	\begin{quote}
+		\textbf{Endpoint Config:} \\
+		\texttt{POST /api/searching/binary} \\
+		\textbf{Body:} \texttt{\{"array": [...], "objetivo": valor\}}
+	\end{quote}
+	
+	\subsection{Tabla Hash con Encadenamiento}
+	Mapea claves a índices mediante función hash. Resuelve colisiones por encadenamiento. Factor de carga garantiza $O(1)$ promedio.
+	
+	\begin{lstlisting}[language=Python, caption={Tabla Hash con Encadenamiento}]
+		class TablaHash:
+		def __init__(self, tamano=10):
+		self.tamano = tamano
+		self.tabla  = [[] for _ in range(tamano)]
+		
+		def _hash(self, clave):
+		return hash(clave) % self.tamano
+		
+		def insertar(self, clave, valor):
+		idx = self._hash(clave)
+		for i, (k, v) in enumerate(self.tabla[idx]):
+		if k == clave:
+		self.tabla[idx][i] = (clave, valor)
+		return
+		self.tabla[idx].append((clave, valor))
+		
+		def buscar(self, clave):
+		idx = self._hash(clave)
+		for k, v in self.tabla[idx]:
+		if k == clave:
+		return {"found": True, "value": v, "index": idx}
+		return {"found": False, "value": None}
+	\end{lstlisting}
+	
+	\begin{quote}
+		\textbf{Endpoint Config:} \\
+		\texttt{POST /api/searching/hash} \\
+		\textbf{Body:} \texttt{\{"clave": valor, "tabla": \{...\}\}}
+	\end{quote}
+	
+	% =========================================================================
+	% --- SECCIÓN 3: GRAFOS ---
+	% =========================================================================
+	\section{Algoritmos de Grafos}
+	Un grafo consta de vértices V y aristas E. El módulo implementa dos representaciones y los dos recorridos fundamentales bajo \texttt{/api/graphs/}.
+	
+	\subsection{Representación de Grafos}
+	\begin{lstlisting}[language=Python, caption={Matriz y Lista de Adyacencia}]
+		def matriz_adyacencia(edges, n):
+		matriz = [[0] * n for _ in range(n)]
+		for u, v in edges:
+		matriz[u][v] = 1
+		matriz[v][u] = 1  # grafo no dirigido
+		return matriz
+		
+		def lista_adyacencia(edges, n):
+		lista = {i: [] for i in range(n)}
+		for u, v in edges:
+		lista[u].append(v)
+		lista[v].append(u)
+		return lista
+	\end{lstlisting}
+	
+	\begin{quote}
+		\textbf{Endpoint Config:} \\
+		\texttt{POST /api/graphs/represent} \\
+		\textbf{Body:} \texttt{\{"edges": [[u,v],...], "n": int\}}
+	\end{quote}
+	
+	\subsection{BFS — Búsqueda por Amplitud}
+	Explora nivel por nivel con cola FIFO. Garantiza camino más corto (en aristas) en grafos no ponderados. Complejidad $O(V + E)$.
+	
+	\begin{lstlisting}[language=Python, caption={Implementacion BFS}]
+		from collections import deque
+		
+		def bfs(grafo, inicio):
+		visitados = []
+		cola      = deque([inicio])
+		vistos    = set([inicio])
+		while cola:
+		nodo = cola.popleft()
+		visitados.append(nodo)
+		for vecino in grafo[nodo]:
+		if vecino not in vistos:
+		vistos.add(vecino)
+		cola.append(vecino)
+		return visitados
+	\end{lstlisting}
+	
+	\begin{quote}
+		\textbf{Endpoint Config:} \\
+		\texttt{POST /api/graphs/bfs} \\
+		\textbf{Body:} \texttt{\{"edges": [...], "n": int, "inicio": int\}}
+	\end{quote}
+	
+	\subsection{DFS — Búsqueda en Profundidad}
+	Explora profundizando en cada rama antes de retroceder. Implementado recursivamente. Complejidad $O(V + E)$.
+	
+	\begin{lstlisting}[language=Python, caption={Implementacion DFS}]
+		def dfs(grafo, inicio, visitados=None):
+		if visitados is None:
+		visitados = []
+		visitados.append(inicio)
+		for vecino in grafo[inicio]:
+		if vecino not in visitados:
+		dfs(grafo, vecino, visitados)
+		return visitados
+	\end{lstlisting}
+	
+	\begin{quote}
+		\textbf{Endpoint Config:} \\
+		\texttt{POST /api/graphs/dfs} \\
+		\textbf{Body:} \texttt{\{"edges": [...], "n": int, "inicio": int\}}
+	\end{quote}
+	
+	% =========================================================================
+	% --- SECCIÓN 4: ÁRBOLES ---
+	% =========================================================================
+	\section{Árboles}
+	
+	\subsection{Árbol Binario — Operaciones y Recorridos}
+	\begin{lstlisting}[language=Python, caption={Arbol Binario de Busqueda}]
+		class Nodo:
+		def __init__(self, valor):
+		self.valor     = valor
+		self.izquierdo = None
+		self.derecho   = None
+		
+		class ArbolBinario:
+		def __init__(self):
+		self.raiz = None
+		
+		def insertar(self, valor):
+		if not self.raiz:
+		self.raiz = Nodo(valor)
+		else:
+		self._insertar(self.raiz, valor)
+		
+		def _insertar(self, nodo, valor):
+		if valor < nodo.valor:
+		if not nodo.izquierdo:
+		nodo.izquierdo = Nodo(valor)
+		else:
+		self._insertar(nodo.izquierdo, valor)
+		else:
+		if not nodo.derecho:
+		nodo.derecho = Nodo(valor)
+		else:
+		self._insertar(nodo.derecho, valor)
+		
+		def inorden(self, nodo, res=None):
+		if res is None: res = []
+		if nodo:
+		self.inorden(nodo.izquierdo, res)
+		res.append(nodo.valor)
+		self.inorden(nodo.derecho, res)
+		return res
+	\end{lstlisting}
+	
+	\subsection{Conversión de Notaciones Aritméticas}
+	\begin{lstlisting}[language=Python, caption={Infija a Sufija - Algoritmo de Shunting Yard}]
+		def infija_a_sufija(expresion: str) -> str:
+		precedencia = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3}
+		salida = []
+		pila   = []
+		for token in expresion.split():
+		if token.isdigit() or token.isalpha():
+		salida.append(token)
+		elif token == '(':
+		pila.append(token)
+		elif token == ')':
+		while pila and pila[-1] != '(':
+		salida.append(pila.pop())
+		pila.pop()
+		else:
+		while (pila and pila[-1] != '(' and
+		precedencia.get(pila[-1], 0) >=
+		precedencia.get(token, 0)):
+		salida.append(pila.pop())
+		pila.append(token)
+		while pila:
+		salida.append(pila.pop())
+		return ' '.join(salida)
+	\end{lstlisting}
+	
+	% =========================================================================
+	% --- SECCIÓN 5: PARALELISMO ---
+	% =========================================================================
+	\section{Algoritmos Paralelos}
+	
+	\subsection{Reducción Paralela y Multiplicación de Matrices}
+	\begin{lstlisting}[language=Python, caption={Suma paralela y Multiplicacion}]
+		import concurrent.futures
+		import math
+		
+		def suma_paralela(arr: list) -> dict:
+		"""W = O(n), D = O(log n)  -  modelo PRAM CREW"""
+		n = len(arr)
+		if n == 0:
+		return {"resultado": 0, "trabajo": 0, "profundidad": 0}
+		niveles  = math.ceil(math.log2(n)) if n > 1 else 0
+		resultado = sum(arr)
+		return {
+			"resultado":   resultado,
+			"trabajo":     n,
+			"profundidad": niveles,
+			"eficiencia":  n / (niveles * n) if niveles > 0 else 1,
+		}
+		
+		def multiplicacion_matrices_paralela(A, B):
+		"""W = O(n^3),  Span = O(n)"""
+		n = len(A)
+		C = [[0] * n for _ in range(n)]
+		def calcular_fila(i):
+		for j in range(n):
+		C[i][j] = sum(A[i][k] * B[k][j] for k in range(n))
+		with concurrent.futures.ThreadPoolExecutor() as executor:
+		executor.map(calcular_fila, range(n))
+		return C
+	\end{lstlisting}
+	
+\end{document}

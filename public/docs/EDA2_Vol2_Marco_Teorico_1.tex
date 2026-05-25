@@ -1,0 +1,480 @@
+% ============================================================
+%  EDA II - Volumen II: Marco Teórico
+%  Universidad Nacional Autónoma de México
+%  Facultad de Ingeniería
+%  Equipo Backend - Proyecto MiniRodri
+% ============================================================
+\documentclass[12pt, letterpaper]{article}
+
+% --- PAQUETES DE IDIOMA Y FORMATO ---
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx} 
+\usepackage{hyperref} 
+\usepackage{xcolor}   
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{amsmath, amssymb}
+
+% --- COLORES ---
+\definecolor{azulUNAM}{HTML}{003087}
+
+% --- HYPERREF ---
+\hypersetup{
+	colorlinks=true,
+	linkcolor=azulUNAM,
+	urlcolor=azulUNAM,
+	pdftitle={EDA II - Marco Teórico de Algoritmos},
+	pdfauthor={Equipo Backend MiniRodri - UNAM}
+}
+
+% ============================================================
+\begin{document}
+	
+	% --- PORTADA ---
+	\begin{titlepage}
+		\centering
+		\vspace*{0.5cm}
+		
+		\includegraphics[width=2.8cm]{logo_unam.png} 
+		\hfill
+		\includegraphics[width=2.8cm]{logo_fi.png} 
+		\\[1.3cm]
+		
+		{\Huge \textbf{Universidad Nacional Autónoma de México}}\\[0.4cm]
+		{\LARGE \textbf{Facultad de Ingeniería}}\\[0.4cm]
+		{\Large Ingeniería en Computación}\\[1.3cm]
+		
+		{\Large \textbf{Materia:} Estructura de Datos y Algoritmos II}\\[0.4cm]
+		{\Large \textbf{Proyecto:} Visualizador Interactivo de Algoritmos}\\[1.3cm]
+		
+		{\LARGE \textbf{Marco Teórico de Algoritmos y Estructuras de Datos}}\\[0.4cm]
+		{\Large \textit{Volumen II — Fundamentos Teóricos y Análisis de Complejidad}}\\[1cm]
+		
+		\begin{flushleft}
+			\Large \textbf{Equipo de Desarrollo - Backend:}\\
+			\vspace{0.2cm}
+			\normalsize
+			$\bullet$ Francisco José Coutiño Morales (\textit{Lead Backend Developer})\\ 
+			$\bullet$ Ernesto Flamenco Villaseñor (\textit{Backend Developer})\\
+			$\bullet$ Tlalli Ortega González (\textit{Backend Developer})\\
+			$\bullet$ Sergio Alonso Salcedo Sainz (\textit{Backend Developer})\\
+			$\bullet$ Orlando Ocampo Lagunas (\textit{Backend Developer})\\
+			$\bullet$ Aarón Salazar Castillo (\textit{Backend Developer})\\
+			$\bullet$ Erick Cruz Solís (\textit{Backend Developer})\\
+			$\bullet$ Augusto Gandarilla Ibarra (\textit{Backend Developer})\\
+			$\bullet$ Neri Israel Cruz Cárdenas (\textit{Backend Developer})\\
+		\end{flushleft}
+		
+		\vfill
+		{\large Tipo: Material Didáctico de Apoyo Académico}\\[0.5cm]
+		{\large Periodo: 2026 -- 2}\\[1cm]
+	\end{titlepage}
+	
+	% --- ÍNDICE ---
+	\newpage
+	\tableofcontents
+	\newpage
+	
+	% ============================================================
+	% --- SECCIÓN 1: ORDENAMIENTO ---
+	% ============================================================
+	\section{Algoritmos de Ordenamiento}
+	
+	\subsection{Fundamentos del Ordenamiento}
+	
+	\begin{quote}
+		\textbf{Definición (Algoritmo de Ordenamiento):}
+		Dado un arreglo $A[1..n]$, un algoritmo de ordenamiento produce una permutación $A'[1..n]$ tal que $A'[1] \leq A'[2] \leq \cdots \leq A'[n]$.
+	\end{quote}
+	
+	Los algoritmos de ordenamiento se clasifican según:
+	
+	\begin{itemize}[noitemsep]
+		\item \textbf{Estabilidad:} preserva el orden relativo de elementos con claves iguales. Merge Sort y Counting Sort son estables; Quick Sort y Heap Sort generalmente no.
+		\item \textbf{In-place:} usa $O(1)$ memoria auxiliar. Bubble, Heap y Quick Sort son in-place; Merge Sort requiere $O(n)$.
+		\item \textbf{Cota inferior comparativa:} cualquier algoritmo basado en comparaciones necesita $\Omega(n \log n)$ comparaciones en el peor caso (demostrable por el árbol de decisión).
+	\end{itemize}
+	
+	\subsection{Bubble Sort}
+	
+	\begin{quote}
+		\textbf{Definición (Bubble Sort):}
+		Compara pares adyacentes $(A[j], A[j+1])$ e intercambia si $A[j] > A[j+1]$. En cada pasada $i$, el $i$-ésimo elemento mayor queda en su posición definitiva.
+	\end{quote}
+	
+	\begin{quote}
+		\textbf{Propiedad (Invariante de ciclo):}
+		Después de la $k$-ésima pasada, los $k$ elementos mayores están en sus posiciones definitivas al final del arreglo. La lista queda ordenada en a lo más $n-1$ pasadas.
+	\end{quote}
+	
+	\textbf{Complejidad:} $T_{mejor} = O(n)$, $T_{promedio} = T_{peor} = O(n^2)$, $S = O(1)$. Su única ventaja práctica es detectar arreglos ya ordenados con una bandera de intercambio.
+	
+	\subsection{Heap Sort y Estructura Heap}
+	
+	\begin{quote}
+		\textbf{Definición (Max-Heap):}
+		Un Max-Heap es un árbol binario completo donde para todo nodo $i$: $A[\text{padre}(i)] \geq A[i]$. En una representación de arreglo, el hijo izquierdo de $i$ está en $2i+1$ y el derecho en $2i+2$.
+	\end{quote}
+	
+	\begin{quote}
+		\textbf{Propiedad (Construcción de heap):}
+		El algoritmo de Floyd construye un Max-Heap en $O(n)$ tiempo, más eficiente que $n$ inserciones individuales que costarían $O(n \log n)$.
+	\end{quote}
+	
+	\textbf{Fase de extracción:} $n-1$ operaciones Heapify de $O(\log n)$ cada una, resultando en $O(n \log n)$ total. Garantiza este tiempo en \textit{todos} los casos, a diferencia de Quick Sort.
+	
+	\subsection{Quick Sort y Partición}
+	
+	\begin{quote}
+		\textbf{Definición (Partición de Lomuto):}
+		Dado un arreglo $A[bajo..alto]$ con pivote $p = A[alto]$, la partición reorganiza el arreglo tal que todos los elementos $\leq p$ quedan a la izquierda del pivote y todos los $> p$ a la derecha.
+	\end{quote}
+	
+	\textbf{Recurrencia promedio:}
+	\[
+	T(n) = 2T\!\left(\tfrac{n}{2}\right) + O(n) \implies T(n) = O(n \log n)
+	\]
+	cuando el pivote divide el arreglo en partes iguales. En el peor caso (arreglo ordenado con pivote = último elemento): $T(n) = T(n-1) + O(n) = O(n^2)$.
+	
+	\begin{quote}
+		\textbf{Nota (Estrategias de elección de pivote):}
+		\textit{Último elemento:} simple pero $O(n^2)$ en arreglos ordenados. \textit{Mediana de tres:} toma la mediana del primero, medio y último. \textit{Pivote aleatorio:} esperanza $O(n \log n)$ con alta probabilidad.
+	\end{quote}
+	
+	\subsection{Counting Sort — No Comparativo}
+	
+	\begin{quote}
+		\textbf{Definición (Counting Sort):}
+		Para enteros en $[0, k]$, cuenta ocurrencias, acumula prefijos y construye el arreglo de salida en tiempo $O(n + k)$ y espacio $O(k)$.
+	\end{quote}
+	
+	Rompe la cota $\Omega(n \log n)$ al explotar que los elementos son enteros en rango acotado, no realizando comparaciones entre ellos. Óptimo cuando $k = O(n)$. Estable si se procesa el arreglo de entrada en orden inverso.
+	
+	\subsection{Radix Sort — Ordenamiento por Dígitos}
+	
+	Ordena números dígito a dígito (LSD a MSD) usando un algoritmo estable (Counting Sort) como subrutina. Para $d$ dígitos en base $b$: $O(d(n+b))$.
+	
+	\begin{quote}
+		\textbf{Nota (Cuando usar Radix Sort):}
+		Cuando $d$ es constante y $b = O(n)$, Radix Sort logra $O(n)$. Muy usado para cadenas de longitud fija, números IP, y ordenamiento de registros en bases de datos.
+	\end{quote}
+	
+	\subsection{Merge Sort — Divide y Vencerás}
+	
+	\begin{quote}
+		\textbf{Definición (Merge Sort):}
+		Divide $A[1..n]$ en $A[1..n/2]$ y $A[n/2+1..n]$, ordena cada mitad recursivamente y fusiona los resultados. La fusión de dos secuencias ordenadas de tamaño $n/2$ requiere exactamente $O(n)$ comparaciones.
+	\end{quote}
+	
+	\textbf{Recurrencia:}
+	\[
+	T(n) = 2T\!\left(\tfrac{n}{2}\right) + O(n) \implies T(n) = O(n \log n)
+	\]
+	(caso 2 del Teorema Maestro). Estable y predecible: garantiza $O(n \log n)$ en todos los casos. Estándar para \textit{ordenamiento externo}.
+	
+	\subsection{Comparativa General}
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{lccccc}
+			\toprule
+			\textbf{Algoritmo} & \textbf{Mejor} & \textbf{Promedio} & \textbf{Peor} & \textbf{Espacio} & \textbf{Estable} \\
+			\midrule
+			Bubble Sort   & $O(n)$      & $O(n^2)$     & $O(n^2)$     & $O(1)$    & Sí \\
+			Heap Sort     & $O(n\log n)$& $O(n\log n)$ & $O(n\log n)$ & $O(1)$    & No \\
+			Quick Sort    & $O(n\log n)$& $O(n\log n)$ & $O(n^2)$     & $O(\log n)$& No \\
+			Counting Sort & $O(n+k)$   & $O(n+k)$     & $O(n+k)$     & $O(k)$    & Sí \\
+			Radix Sort    & $O(nk)$    & $O(nk)$      & $O(nk)$      & $O(n+k)$  & Sí \\
+			Merge Sort    & $O(n\log n)$& $O(n\log n)$ & $O(n\log n)$ & $O(n)$    & Sí \\
+			\bottomrule
+		\end{tabular}
+		\caption{Comparativa de complejidad — Algoritmos de ordenamiento implementados}
+	\end{table}
+	
+	% ============================================================
+	% --- SECCIÓN 2: BÚSQUEDA ---
+	% ============================================================
+	\section{Algoritmos de Búsqueda}
+	
+	\subsection{Fundamentos de la Búsqueda}
+	
+	\begin{quote}
+		\textbf{Definición (Problema de búsqueda):}
+		Dado un conjunto $S$ y un elemento objetivo $x$, determinar si $x \in S$ y, en caso afirmativo, su ubicación en la estructura de datos.
+	\end{quote}
+	
+	Clasificación según estado de los datos:
+	\begin{itemize}[noitemsep]
+		\item \textbf{Datos no ordenados:} búsqueda lineal, $O(n)$ inevitable (cota inferior por argumento del adversario).
+		\item \textbf{Datos ordenados:} búsqueda binaria $O(\log n)$, interpolación $O(\log \log n)$ promedio.
+		\item \textbf{Transformación de clave:} hashing, $O(1)$ amortizado.
+	\end{itemize}
+	
+	\subsection{Búsqueda Lineal}
+	Examina cada elemento secuencialmente. Complejidad $O(1)$ mejor caso, $O(n)$ peor y promedio. Óptima cuando los datos no están ordenados (cota inferior $\Omega(n)$ por el argumento del adversario).
+	
+	\subsection{Búsqueda Binaria}
+	
+	\begin{quote}
+		\textbf{Definición (Búsqueda Binaria):}
+		Sobre $A[1..n]$ ordenado, compara $A[\lfloor(iz+der)/2\rfloor]$ con $x$. Descarta la mitad donde $x$ no puede estar en cada paso.
+	\end{quote}
+	
+	\textbf{Recurrencia:} $T(n) = T(n/2) + O(1) \implies T(n) = O(\log n)$. Con $n = 10^9$: máximo 30 comparaciones.
+	
+	\begin{quote}
+		\textbf{Propiedad (Invariante):}
+		Si $x \in A$, entonces $x \in A[izquierda..derecha]$ al inicio de cada iteración.
+	\end{quote}
+	
+	\subsection{Funciones Hash y Tablas de Dispersión}
+	
+	\begin{quote}
+		\textbf{Definición (Función Hash):}
+		Una función $h: U \to \{0, 1, \ldots, m-1\}$ mapea un universo de claves $U$ a índices de una tabla de tamaño $m$. Una colisión ocurre cuando $h(k_1) = h(k_2)$ para $k_1 \neq k_2$.
+	\end{quote}
+	
+	\textbf{Factor de carga:} $\alpha = n/m$. Para $\alpha < 0.75$, las operaciones tienen $O(1)$ esperado. Al superar este umbral, se realiza una rehashificación que duplica la tabla, costando $O(n)$ amortizado a $O(1)$ por operación.
+	
+	\subsection{Resolución de Colisiones}
+	
+	\textbf{Encadenamiento:} listas enlazadas en cada posición. Tiempo de búsqueda $O(1 + \alpha)$ promedio. Tolera $\alpha > 1$.
+	
+	\textbf{Sondeo lineal:} $h(k, i) = (h(k) + i) \bmod m$. Sufre de \textit{agrupamiento primario} que degrada el rendimiento cuando $\alpha$ es alto.
+	
+	\textbf{Doble hashing:} $h(k,i) = (h_1(k) + i \cdot h_2(k)) \bmod m$. Elimina el agrupamiento primario. $h_2(k)$ debe ser coprimo con $m$.
+	
+	% ============================================================
+	% --- SECCIÓN 3: GRAFOS ---
+	% ============================================================
+	\section{Algoritmos de Grafos}
+	
+	\subsection{Teoría de Grafos — Definiciones Fundamentales}
+	
+	\begin{quote}
+		\textbf{Definición (Grafo):}
+		Un grafo $G = (V, E)$ consiste en un conjunto finito de vértices $V$ y un conjunto de aristas $E \subseteq V \times V$. Si las aristas tienen dirección, $G$ es un \textit{dígrafo}; en caso contrario es \textit{no dirigido}.
+	\end{quote}
+	
+	\textbf{Terminología esencial:}
+	\begin{itemize}[noitemsep]
+		\item \textbf{Grado} $\deg(v)$: número de aristas incidentes en $v$. En dígrafos: grado de entrada $\deg^-(v)$ y salida $\deg^+(v)$.
+		\item \textbf{Camino:} secuencia de vértices $v_0, v_1, \ldots, v_k$ donde $(v_{i-1}, v_i) \in E$. Si $v_0 = v_k$, es un \textit{ciclo}.
+		\item \textbf{Conexidad:} $G$ es conexo si existe camino entre todo par de vértices.
+		\item \textbf{Árbol:} grafo conexo acíclico con $|V|-1$ aristas.
+	\end{itemize}
+	
+	\subsection{Representaciones de Grafos}
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{lcccc}
+			\toprule
+			\textbf{Representación} & \textbf{Espacio} & \textbf{Verificar arista} & \textbf{Vecinos de $v$} & \textbf{Óptima para} \\
+			\midrule
+			Matriz de adyacencia & $O(V^2)$   & $O(1)$          & $O(V)$         & Grafos densos \\
+			Lista de adyacencia  & $O(V + E)$ & $O(\deg(v))$    & $O(\deg(v))$   & Grafos dispersos \\
+			\bottomrule
+		\end{tabular}
+		\caption{Comparativa de representaciones de grafos}
+	\end{table}
+	
+	\subsection{BFS — Búsqueda por Amplitud}
+	
+	\begin{quote}
+		\textbf{Definición (BFS):}
+		Dado un grafo $G$ y un vértice fuente $s$, BFS visita todos los vértices alcanzables desde $s$ en orden no decreciente de distancia (en aristas).
+	\end{quote}
+	
+	\begin{quote}
+		\textbf{Propiedad (Árbol BFS):}
+		Al finalizar BFS, el árbol de exploración contiene caminos más cortos (en número de aristas) desde $s$ hacia todo vértice alcanzable.
+	\end{quote}
+	
+	\textbf{Complejidad:} $O(V + E)$ tiempo, $O(V)$ espacio.\\
+	\textbf{Aplicaciones:} camino más corto no ponderado, detección de bipartición, nivel de separación en redes sociales.
+	
+	\subsection{DFS — Búsqueda en Profundidad}
+	
+	\begin{quote}
+		\textbf{Definición (DFS):}
+		Explora el grafo profundizando en cada rama antes de retroceder. Asigna tiempos de descubrimiento $d[v]$ y finalización $f[v]$ a cada vértice.
+	\end{quote}
+	
+	\textbf{Clasificación de aristas en DFS:}
+	\begin{itemize}[noitemsep]
+		\item \textbf{Árbol:} seguidas durante la exploración.
+		\item \textbf{Retroceso:} hacia un ancestro; indican ciclos en dígrafos.
+		\item \textbf{Avance/cruzadas:} solo en dígrafos.
+	\end{itemize}
+	
+	\textbf{Aplicaciones:} detección de ciclos, ordenamiento topológico, componentes fuertemente conexas (Tarjan, Kosaraju).
+	
+	% ============================================================
+	% --- SECCIÓN 4: ÁRBOLES ---
+	% ============================================================
+	\section{Árboles}
+	
+	\subsection{Conceptos Fundamentales}
+	
+	\begin{quote}
+		\textbf{Definición (Árbol con raíz):}
+		Un árbol con raíz es un grafo acíclico conexo con un vértice distinguido llamado raíz. Define una relación jerárquica padre-hijo entre vértices.
+	\end{quote}
+	
+	\textbf{Terminología:} \textit{altura} = longitud del camino más largo raíz-hoja; \textit{profundidad} de $v$ = distancia desde la raíz; \textit{hoja} = nodo sin hijos; \textit{grado} de un nodo = número de hijos.
+	
+	\subsection{Árboles Binarios de Búsqueda (BST)}
+	
+	\begin{quote}
+		\textbf{Definición (BST):}
+		Para todo nodo $n$ con clave $k$:
+		\[
+		\forall x \in \text{subárbol izquierdo}: \text{clave}(x) < k
+		\quad \text{y} \quad
+		\forall y \in \text{subárbol derecho}: \text{clave}(y) > k
+		\]
+	\end{quote}
+	
+	\textbf{Complejidad de operaciones:} $O(h)$ donde $h$ es la altura. En el peor caso (secuencia ordenada): $h = n$, degenerando a lista enlazada. Árboles balanceados (AVL, Red-Black) garantizan $h = O(\log n)$.
+	
+	\subsection{Recorridos de Árboles}
+	
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{lll}
+			\toprule
+			\textbf{Recorrido} & \textbf{Orden de visita} & \textbf{Aplicación principal} \\
+			\midrule
+			Inorden    & Izq -- Raíz -- Der & Lista ordenada de un BST \\
+			Preorden   & Raíz -- Izq -- Der & Serialización del árbol \\
+			Postorden  & Izq -- Der -- Raíz & Eliminación, evaluación sufija \\
+			\bottomrule
+		\end{tabular}
+		\caption{Recorridos de árboles binarios}
+	\end{table}
+	
+	\subsection{Notaciones Aritméticas}
+	
+	\begin{quote}
+		\textbf{Definición (Notaciones):}
+		\begin{itemize}[noitemsep]
+			\item \textbf{Infija:} $A + B$ — operador entre operandos, requiere paréntesis.
+			\item \textbf{Prefija (polaca):} $+ A B$ — operador antes de operandos.
+			\item \textbf{Sufija (RPN):} $A B +$ — operador después de operandos.
+		\end{itemize}
+	\end{quote}
+	
+	La conversión infija $\to$ sufija se realiza con el algoritmo de Shunting Yard de Dijkstra en $O(n)$. La evaluación de expresiones sufijas usa una pila en $O(n)$ sin necesidad de manejar paréntesis ni precedencia explícita.
+	
+	\subsection{Árboles B y B+}
+	
+	\begin{quote}
+		\textbf{Definición (Árbol B de orden $m$):}
+		Árbol de búsqueda balanceado donde cada nodo tiene entre $\lceil m/2 \rceil$ y $m$ hijos. Todos los nodos hoja están al mismo nivel. Diseñado para minimizar accesos a disco.
+	\end{quote}
+	
+	\begin{quote}
+		\textbf{Propiedad (Árbol B+):}
+		En un árbol B+, todos los datos se almacenan en las hojas, que se enlazan formando una lista doblemente enlazada. Permite recorridos secuenciales eficientes. Estándar en sistemas de bases de datos (MySQL InnoDB, PostgreSQL).
+	\end{quote}
+	
+	% ============================================================
+	% --- SECCIÓN 5: ARCHIVOS ---
+	% ============================================================
+	\section{Archivos y Organización de Datos}
+	
+	\subsection{Organización Lógica y Física}
+	
+	\begin{quote}
+		\textbf{Definición (Organización de archivos):}
+		La \textit{organización lógica} describe la vista abstracta de los datos (registros, campos). La \textit{organización física} describe la disposición real en el dispositivo de almacenamiento (sectores, bloques).
+	\end{quote}
+	
+	\textbf{Tipos de organización:}
+	\begin{itemize}[noitemsep]
+		\item \textbf{Secuencial:} registros almacenados consecutivamente. Óptimo para procesamiento batch, $O(n)$ para búsqueda aleatoria.
+		\item \textbf{Indexado:} índice separado (típicamente Árbol B+) que mapea claves a posiciones físicas. Búsqueda en $O(\log n)$ accesos a disco.
+		\item \textbf{Acceso directo (hash):} la posición física se calcula mediante una función hash. Búsqueda $O(1)$ promedio.
+	\end{itemize}
+	
+	\subsection{Métodos de Acceso}
+	
+	El \textbf{acceso lógico} abstrae los detalles físicos; el programador trabaja con registros. El \textbf{acceso físico} manipula bloques directamente, usado en sistemas de bases de datos que implementan su propio buffer pool.
+	
+	\begin{quote}
+		\textbf{Nota (Jerarquía de memoria y latencia):}
+		Registro CPU: $\sim$1 ns; Cache L1: $\sim$1 ns; RAM: $\sim$100 ns; SSD: $\sim$0.1 ms; Disco magnético: $\sim$10 ms. Minimizar accesos a disco es crítico: un algoritmo con $O(\log n)$ accesos a disco supera en práctica a uno con $O(n)$ accesos a RAM.
+	\end{quote}
+	
+	% ============================================================
+	% --- SECCIÓN 6: PARALELISMO ---
+	% ============================================================
+	\section{Introducción a los Algoritmos Paralelos}
+	
+	\subsection{Modelos de Paralelismo y Granularidad}
+	
+	\begin{quote}
+		\textbf{Definición (Algoritmo paralelo):}
+		Un algoritmo paralelo resuelve un problema usando $P$ procesadores que ejecutan instrucciones simultáneamente, reduciendo el tiempo total (span) a cambio de mayor trabajo total o complejidad de implementación.
+	\end{quote}
+	
+	\textbf{Ley de Amdahl:} Si una fracción $p$ del programa puede paralelizarse:
+	\[
+	S(P) = \frac{1}{(1-p) + \dfrac{p}{P}} \xrightarrow[P \to \infty]{} \frac{1}{1-p}
+	\]
+	El componente serial limita fundamentalmente la aceleración máxima.
+	
+	\subsection{Modelo PRAM}
+	
+	\begin{quote}
+		\textbf{Definición (PRAM):}
+		\textit{Parallel Random Access Machine}: $P$ procesadores con memoria compartida de acceso en $O(1)$. Ejecutan instrucciones de forma síncrona.
+	\end{quote}
+	
+	\textbf{Variantes según acceso a memoria:}
+	\begin{itemize}[noitemsep]
+		\item \textbf{EREW:} lecturas y escrituras exclusivas. El más restrictivo.
+		\item \textbf{CREW:} lecturas concurrentes, escrituras exclusivas. El más común.
+		\item \textbf{CRCW:} lecturas y escrituras concurrentes; las escrituras simultáneas se resuelven por prioridad, OR, o arbitrario.
+	\end{itemize}
+	
+	\subsection{Análisis de Desempeño — Trabajo y Profundidad}
+	
+	\begin{quote}
+		\textbf{Definición (Trabajo y Profundidad):}
+		\begin{itemize}[noitemsep]
+			\item $W(n)$: \textbf{trabajo} — número total de operaciones de todos los procesadores.
+			\item $D(n)$: \textbf{profundidad/span} — longitud del camino crítico (operaciones que deben ejecutarse secuencialmente).
+		\end{itemize}
+	\end{quote}
+	
+	\begin{quote}
+		\textbf{Propiedad (Ley de Brent):}
+		Con $P$ procesadores, el tiempo de ejecución satisface:
+		\[
+		T_P \leq D(n) + \frac{W(n)}{P}
+		\]
+		El \textbf{paralelismo máximo} es $W(n)/D(n)$, que indica cuántos procesadores pueden mantenerse útiles simultáneamente.
+	\end{quote}
+	
+	\textbf{Ejemplo — Suma paralela por reducción en árbol:}
+	\[
+	W(n) = O(n) \quad D(n) = O(\log n) \quad \text{Paralelismo} = \frac{O(n)}{O(\log n)} = O\!\left(\frac{n}{\log n}\right)
+	\]
+	
+	\begin{quote}
+		\textbf{Nota (Eficiencia paralela):}
+		$E = \dfrac{W(n)}{P \cdot T_P}$. Un algoritmo eficiente maximiza $E \to 1$, minimizando tiempo de sincronización, comunicación y procesadores ociosos.
+	\end{quote}
+	
+	\vfill
+	\begin{center}
+		\color{gray}\small
+		Material didáctico elaborado por el Equipo de Backend — Proyecto MiniRodri\\
+		Estructura de Datos y Algoritmos II $\mid$ Facultad de Ingeniería, UNAM $\mid$ 2025--2026
+	\end{center}
+	
+\end{document}
