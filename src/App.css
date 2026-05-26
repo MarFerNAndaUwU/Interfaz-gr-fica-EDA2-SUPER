@@ -106,6 +106,7 @@ body {
 }
 
 /* Título Principal */
+/* Título Principal (Afecta a MiniRodri) */
 .main-title {
   font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
   font-size: 72px;
@@ -121,12 +122,47 @@ body {
     0px 4px 12px rgba(0, 86, 214, 0.25);
 }
 
-/* Subtítulo */
+.sub-title {
+  display: block; 
+  font-size: 32px; /* Ajustado para que quepa bien con los peces */
+  font-weight: 700; 
+  margin-top: 15px;
+
+  /* 🎨 El Degradado: De azul brillante a azul rey profundo */
+  background: linear-gradient(to bottom, #5cc8ff 0%, #0072ce 40%, #003399 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  
+  /* ✨ Crucial para el contraste: Una sombra blanca gruesa que actúe como borde o "glow" */
+  text-shadow: 
+    -1px -1px 0 rgba(65, 138, 255, 0.877),  
+     1px -1px 0 rgb(255, 255, 255),
+    -1px  1px 0 rgba(195, 204, 255, 0.8),
+     1px  1px 0 rgb(52, 241, 255),
+     0px  4px 8px rgba(31, 100, 237, 0.815) !important;
+}
+
 .main-subtitle {
-  margin-top: 20px;
-  font-size: 22px;
-  color: #12456b;
+  display: block;
+  margin-top: 25px; /* Separa la frase del subtítulo azul anterior */
+  font-size: 20px; /* Tamaño ideal para que sea legible sin verse tosco */
+  
+  /* 🔤 TIPOGRAFÍA DE WINDOWS VISTA (Limpia y corporativa) */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-weight: 600;
+  letter-spacing: 0.3px;
+  
+  /* 🎨 AZUL OCÉANO PROFUNDO (Deja atrás el negro plano y combina con el agua) */
+  color: rgb(0, 123, 255) !important; 
+  
+  /* ✨ EFECTO CRISTAL: Sutil relieve blanco abajo de las letras */
+  text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.9) !important;
+  
+  /* Centrado y estructura */
+  line-height: 1.4;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Barra de navegación */

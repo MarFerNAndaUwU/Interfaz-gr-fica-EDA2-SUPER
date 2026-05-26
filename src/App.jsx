@@ -114,9 +114,13 @@ function App() {
           </div>
         </div>
 
+        {/* Contenido Principal */}
         <div className="hero-content text-center" style={{ position: 'relative', zIndex: 5 }}>
           <img src={miniRodri} alt="MiniRodri" className="mini-rodri-main" />
-          <h1 className="main-title">MiniRodri <br /> EDA II</h1>
+          <h1 className="main-title">
+            MiniRodri <br />
+            <span className="sub-title"> Tú pequeño asistente interactivo en EDA II</span>
+          </h1>
           <p className="main-subtitle">
             Visualizador interactivo de algoritmos,
             estructuras de datos y chatbot inteligente.
