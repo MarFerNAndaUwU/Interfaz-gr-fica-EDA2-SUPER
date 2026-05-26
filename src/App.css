@@ -901,10 +901,6 @@ body::after {
   z-index: 9998 !important;
 }
 
-/* ==========================================================================
-   💥 TRIPLE PARCHE FORZADO DE CAPAS (DESBLOQUEO TOTAL)
-   ========================================================================== */
-
 /* 1. Elevamos drásticamente el botón de música y su contenedor directo */
 .btn-glossy-music {
   position: relative !important;
@@ -930,7 +926,7 @@ body::after,
 }
 
 /* ==========================================================================
-   🐟 EFECTO ACUARIO FRUTIGER AERO (PECES AL FONDO SIN BLOQUEAR CLICS)
+   EFECTO ACUARIO FRUTIGER AERO (PECES AL FONDO SIN BLOQUEAR CLICS)
    ========================================================================== */
 .vista-fish-aquarium {
   position: absolute;
@@ -944,4 +940,55 @@ body::after,
   opacity: 0.65; 
   z-index: 1; 
   pointer-events: none !important; /* Crucial para que no te bloquee los botones */
+}
+
+/* 1. 🛑 Evita que los enlaces rompan la posición de la pantalla general */
+.frutiger-scrollspy {
+  position: relative !important;
+  height: 380px !important; /* Limita la altura exacta de la ventanita */
+  overflow-y: auto !important; /* Habilita el scroll interno */
+  scroll-behavior: smooth; /* Hace el movimiento suave */
+}
+
+/* 2. 📍 Posicionamiento preciso del anclaje interno */
+.scroll-section {
+  scroll-margin-top: 30px;
+}
+
+.scroll-section {
+  scroll-margin-top: 20px; /* 👈 Esto evita que el título se pegue por completo al techo de la caja */
+}
+
+/* 3. ✨ Comportamiento Frutiger de los botones al pasar el cursor o seleccionarlos */
+.frutiger-bubble-item:focus,
+.frutiger-bubble-item:active {
+  background: linear-gradient(to bottom, #5cc8ff 0%, #0072ce 40%, #003399 100%) !important;
+  color: white !important;
+  box-shadow: 0px 0px 8px rgba(0, 114, 206, 0.6) !important;
+}
+
+.frutiger-bubble-item:hover {
+  background: rgba(92, 200, 255, 0.2) !important;
+  color: #0056d6 !important;
+}
+
+/* Anula por completo cualquier rastro de botón interactivo */
+.etiqueta-estatica {
+  cursor: default !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  opacity: 0.9; /* Opcional: les da un toque sutil de etiqueta fija */
+}
+
+/* Solo se aplicará a los elementos que tengan esta clase */
+.texto-justificado {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+}
+
+/* Clase para centrar cualquier texto que quieras en medio */
+.texto-centrado {
+  text-align: center !important;
 }
