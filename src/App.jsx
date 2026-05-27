@@ -3,6 +3,7 @@ import React, { useState, useRef } from 'react';
 import miniRodri from './assets/minirodri.png';
 import musicaFondo from './assets/musica-fondo.mp3';
 import pecesGilet from './assets/peces-acuario.gif';
+import vaca from './assets/imagenAnimal.png';
 
 const BACKEND_URL = "https://proyecto-edaii-backend.onrender.com";
 const CHATBOT_URL = "https://repo-chatbot-ia.onrender.com";
@@ -93,7 +94,11 @@ function App() {
 
       <header id="inicio" className="hero-window mb-4 section-offset" style={{ position: 'relative', overflow: 'hidden' }}>
         
-        <div className="vista-fish-aquarium" style={{ backgroundImage: `url(${pecesGilet})` }}></div>
+        
+        <div className="vista-fish-aquarium" style={{ backgroundImage: `url(${pecesGilet})` }}>
+          <img src={vaca} alt="vaca secreta" className="vaca-secreta" />
+        </div>
+        
 
         <div className="window-top-bar" style={{ position: 'relative', zIndex: 10 }}>
           <div className="window-buttons-left">
@@ -289,9 +294,12 @@ function App() {
           <h4>Equipo creador de MiniRodri</h4>
           <p>En esta sección podremos agregar los nombres de los integrantes del equipo</p>
           <div className="team-placeholder">
-            <p><strong>Integrante 1:</strong> Nombre</p>
-            <p><strong>Integrante 2:</strong> Nombre</p>
-            <p><strong>Integrante 3:</strong> Nombre</p>
+          
+            <p><strong>Integrante 1:</strong> Casanova Cortina America Daniela</p>
+            <p><strong>Integrante 2:</strong> Cecilio Alejandro Carlos Didier</p>
+            <p><strong>Integrante 3:</strong> González Baca María Fernanda</p>
+            <p><strong>Integrante 4:</strong> Soriano Nievas Andres</p>
+            <p><strong>Integrante 5:</strong> Toledo Reyes Vania</p>
           </div>
         </div>
       </div>

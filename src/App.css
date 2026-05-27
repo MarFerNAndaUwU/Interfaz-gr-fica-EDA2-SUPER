@@ -348,8 +348,8 @@ body {
 
 /* Expandir */
 .expanded-chat {
-  width: 650px;
-  height: 760px;
+  width: 750px;
+  height: 860px;
 }
 
 /* Header Chat */
@@ -403,7 +403,7 @@ body {
 
 /* Historial */
 .chat-history {
-  height: 220px;
+  height: 500px;
   overflow-y: auto;
   background: rgba(255,255,255,0.35);
   border-radius: 20px;
@@ -933,13 +933,14 @@ body::after,
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 65%; /* Qué tan arriba nadarán tus peces */
-  background-size: 280px; /* Aquí controlas qué tan grandes o chicos se ven */
-  background-repeat: repeat-x; 
+  height: 65%;
+  background-size: 280px;
+  background-repeat: repeat-x;
   background-position: bottom;
-  opacity: 0.65; 
-  z-index: 1; 
-  pointer-events: none !important; /* Crucial para que no te bloquee los botones */
+  opacity: 0.65;
+  z-index: 1;
+  pointer-events: none !important;
+  overflow: visible;
 }
 
 /* 1. 🛑 Evita que los enlaces rompan la posición de la pantalla general */
@@ -991,4 +992,24 @@ body::after,
 /* Clase para centrar cualquier texto que quieras en medio */
 .texto-centrado {
   text-align: center !important;
+}
+
+/* Vaca secreta sobre el acuario */
+.vaca-secreta {
+  position: absolute;
+
+  top: 25px;
+  left: 140px;
+
+  width: 150px;
+
+  opacity: 0.95;
+
+  z-index: 20;
+
+  pointer-events: none;
+
+  transform: rotate(-12deg);
+
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));
 }
