@@ -1,3 +1,13 @@
+nombres de integrantes: 
+1- González Baca María Fernanda 
+2-Soriano Nievas Andres
+3-Casanova Cortina America 
+4-Toledo Reyes Vania
+5-Carlos Didier Cecilio Alejandro
+
+
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
