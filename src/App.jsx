@@ -241,13 +241,13 @@ function App() {
                   border-radius: 12px;
                   overflow: hidden;
                   box-shadow: 0 6px 15px rgba(0, 180, 216, 0.15);
-                  border: 1px solid rgba(0, 180, 216, 0.3);
+                  border: 1px solid rgba(97, 87, 209, 0.3);
                   margin-bottom: 1.5rem;
-                  background: rgba(255, 255, 255, 0.85);
+                  background: rgba(150, 229, 243, 0.85);
                   backdrop-filter: blur(4px);
                 }
                 .frutiger-aero-table thead tr {
-                  background: linear-gradient(to bottom, #00b4d8 0%, #0077b6 50%, #005f73 100%);
+                  background: linear-gradient(to bottom, #39cefb 0%, #2170cb 50%, #33d8f9 100%);
                 }
                 .frutiger-aero-table thead th {
                   color: white;
@@ -255,7 +255,7 @@ function App() {
                   padding: 12px 16px;
                   text-shadow: 0 1px 2px rgba(0,0,0,0.4);
                   border: none;
-                  border-bottom: 2px solid #00f5d4;
+                  border-bottom: 2px solid #00f5d48a;
                   box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
                 }
                 .frutiger-aero-table tbody tr {
@@ -265,7 +265,7 @@ function App() {
                   background-color: rgba(240, 248, 255, 0.6);
                 }
                 .frutiger-aero-table tbody tr:nth-of-type(odd) {
-                  background-color: rgba(255, 255, 255, 0.9);
+                  background-color: rgba(118, 245, 203, 0.61);
                 }
                 .frutiger-aero-table tbody tr:hover {
                   background: linear-gradient(to bottom, rgba(0, 245, 212, 0.1) 0%, rgba(0, 180, 216, 0.15) 100%);
