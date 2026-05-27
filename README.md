@@ -1,7 +1,7 @@
 nombres de integrantes: 
 1- González Baca María Fernanda 
 2-Soriano Nievas Andres
-3-Casanova Cortina America Daniela
+3-Casanova Cortina America 
 4-Toledo Reyes Vania
 5-Carlos Didier Cecilio Alejandro
 
