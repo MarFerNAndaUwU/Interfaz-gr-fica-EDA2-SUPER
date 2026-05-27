@@ -1013,3 +1013,62 @@ body::after,
 
   filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));
 }
+
+/* ==========================================================================
+   BOTONES DE DOCUMENTACIÓN - ESTILO FRUTIGER AERO
+   ========================================================================== */
+
+.frutiger-document-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 24px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9) 0%, rgba(200, 235, 255, 0.7) 50%, rgba(160, 220, 255, 0.8) 100%);
+  border: 2px solid rgba(0, 180, 216, 0.4);
+  border-radius: 50px; /* Bordes completamente ovalados tipo cápsula */
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 119, 182, 0.15), 
+              inset 0 1px 2px rgba(255, 255, 255, 1);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.frutiger-document-btn:hover {
+  transform: translateY(-4px) scale(1.03);
+  border-color: #00f5d4; /* Color verde agua brillante en el borde al hacer hover */
+  background: linear-gradient(to bottom, #ffffff 0%, #d8f3dc 40%, #95d5b2 100%); /* Degradado natural orgánico */
+  box-shadow: 0 8px 20px rgba(0, 245, 212, 0.3), 
+              inset 0 1px 3px rgba(255, 255, 255, 1);
+}
+
+.frutiger-document-btn:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 2px 5px rgba(0, 119, 182, 0.2);
+}
+
+/* Estilos de las imágenes de papeles/carpetas dentro del botón */
+.document-btn-icon {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+  transition: transform 0.3s ease;
+}
+
+.frutiger-document-btn:hover .document-btn-icon {
+  transform: rotate(-6px) scale(1.1); /* Efecto dinámico en el icono al pasar el mouse */
+}
+
+/* Texto interno del botón */
+.document-btn-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #005f73;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: color 0.3s ease;
+}
+
+.frutiger-document-btn:hover .document-btn-text {
+  color: #1b4332;
+}
