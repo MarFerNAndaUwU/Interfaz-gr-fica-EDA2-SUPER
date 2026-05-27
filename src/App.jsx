@@ -506,11 +506,7 @@ function App() {
           <h4>EQUIPO CONFORMADO POR:</h4>
           <p> Alumnos de la Facultad de Ingeniería pertenecientes a la carrera de Ingeniería en Computación</p>
           <div className="team-placeholder">
-            <p><strong>Integrante 1:</strong> Casanova Cortina America Daniela</p>
-            <p><strong>Integrante 2:</strong> Cecilio Alejandro Carlos Didier</p>
-            <p><strong>Integrante 3:</strong> González Baca María Fernanda</p>
-            <p><strong>Integrante 4:</strong> Soriano Nievas Andres</p>
-            <p><strong>Integrante 5:</strong> Toledo Reyes Vania</p>
+            <p>Este fue un proyecto por nosotros, hecho para la materia de Estructura de datos y Algoritmos II</p>
           </div>
         </div>
       </div>
