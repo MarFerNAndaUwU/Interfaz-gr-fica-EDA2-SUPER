@@ -3,7 +3,6 @@ import React, { useState, useRef } from 'react';
 import miniRodri from './assets/minirodri.png';
 import musicaFondo from './assets/musica-fondo.mp3';
 import pecesGilet from './assets/peces-acuario.gif';
-import vaca from './assets/imagenAnimal.png';
 
 const BACKEND_URL = "https://proyecto-edaii-backend.onrender.com";
 const CHATBOT_URL = "https://repo-chatbot-ia.onrender.com";
@@ -94,11 +93,7 @@ function App() {
 
       <header id="inicio" className="hero-window mb-4 section-offset" style={{ position: 'relative', overflow: 'hidden' }}>
         
-        
-        <div className="vista-fish-aquarium" style={{ backgroundImage: `url(${pecesGilet})` }}>
-          <img src={vaca} alt="vaca secreta" className="vaca-secreta" />
-        </div>
-        
+        <div className="vista-fish-aquarium" style={{ backgroundImage: `url(${pecesGilet})` }}></div>
 
         <div className="window-top-bar" style={{ position: 'relative', zIndex: 10 }}>
           <div className="window-buttons-left">
@@ -110,6 +105,13 @@ function App() {
             {musicaActiva ? '🎵 Pausar música' : '🔇 Activar música'}
           </button>
 
+          <div className="window-search">
+            <input
+              type="text"
+              placeholder="Buscar algoritmos..."
+              className="form-control"
+            />
+          </div>
         </div>
 
         {/* Contenido Principal */}
@@ -232,17 +234,122 @@ function App() {
                 <h4 className="text-primary mt-2">1. Ordenación por fusión</h4>
                 <p>Es un algoritmo de ordenamiento basado en la técnica de <em>Divide y Vencerás</em>. Divide el arreglo recursivamente a la mitad hasta tener subarreglos de tamaño 1, para luego fusionarlos (merge) de manera ordenada en tiempo lineal $O(n \log n)$.</p>
               </div>
+                            <hr />
+
+              <div className="info-card">
+                 <table className="table table-bordered table-striped">
+                  <thead>
+                    <tr><th>Archivo</th><th>Descripción</th><th>Uso Front-End</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>binary_tree.py</td><td>Árbol binario de búsqueda.</td><td>Visualización de recorridos y estructura.</td></tr>
+                    <tr><td>btree.py</td><td>Árbol B de orden 3.</td><td>Representación por niveles.</td></tr>
+                    <tr><td>bplustree.py</td><td>Árbol B+ con hojas enlazadas.</td><td>Visualización de hojas conectadas.</td></tr>
+                    <tr><td>notation.py</td><td>Conversión de notaciones.</td><td>Conversor de expresiones.</td></tr>
+                    <tr><td>router.py</td><td>Endpoints del módulo.</td><td>Comunicación Backend-Frontend.</td></tr>
+                  </tbody>
+                </table>      </div>        
+              {/* ORDENAMIENTO */}
+              <div id="item-ordenamiento" className="scroll-section mb-4">
+                               <div className="info-card"> <h4>1.2 Carpeta Ordenamiento</h4>
+
+                <table className="table table-bordered table-striped">
+                  <thead>
+                    <tr><th>Archivo</th><th>Descripción</th><th>Uso Front-End</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>sorting_algorithms.py</td><td>Bubble, Heap y Quick Sort.</td><td>Animaciones.</td></tr>
+                    <tr><td>sorting_schemas.py</td><td>Modelos de entrada y salida.</td><td>Estructuración de datos.</td></tr>
+                    <tr><td>sorting_router.py</td><td>Endpoints de ordenamiento.</td><td>Ejecución desde la interfaz.</td></tr>
+                    <tr><td>counting_sort.py</td><td>Ordenamiento por conteo.</td><td>Tabla de frecuencias.</td></tr>
+                    <tr><td>merge_sort.py</td><td>Divide y combina arreglos.</td><td>Visualización de subarreglos.</td></tr>
+                    <tr><td>radix_sort.py</td><td>Ordenamiento por dígitos.</td><td>Etapas por posición.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+ </div>
+              <hr />
+               <div className="info-card"> <h4>1.1Módulo de Algoritmos</h4>
+  
+               <div id="tema-fusion" className="scroll-section texto-justificado">
+
+  <p>
+    La carpeta algoritmos contiene las implementaciones principales de estructuras de datos, 
+    algoritmos de búsqueda, ordenamiento, grafos, manejo de archivos y procesamiento paralelo.
+  </p>
+  
+  <p>
+    Su función dentro del sistema es concentrar la lógica computacional que posteriormente puede 
+    ser utilizada por la API y representada visualmente en el front-end.
+  </p>
+  
+  <p>
+    Este módulo no está diseñado para mostrarse directamente al usuario final, sino para proporcionar 
+    las operaciones que serán consumidas desde la interfaz. Por ello, la documentación se enfoca en 
+    describir brevemente qué hace cada archivo y cómo podría representarse en la parte visual del sistema.
+  </p>
+</div>
+              </div>
+
+
               <hr className="frutiger-divider" />
               
               <div id="tema-rapida" className="scroll-section texto-justificado">
                 <h4 className="text-primary mt-4">2. Clasificación rápida</h4>
                 <p>Otro algoritmo clásico de ordenamiento que utiliza un elemento llamado "pivote" para particionar la estructura. Coloca los menores a un lado y los mayores al otro, repitiendo el proceso de manera recursiva.</p>
               </div>
+                            <hr />
+
+               {/* ARCHIVOS */}
+              <div id="item-archivos" className="scroll-section mb-4">
+                <h4 className="text-primary">2.1 Carpeta Archivos</h4>
+                <p>Gestiona almacenamiento y consulta de información básica de archivos.</p>
+                <table className="table table-bordered table-striped">
+                  <thead>
+                    <tr><th>Archivo</th><th>Descripción</th><th>Uso Front-End</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>organizacion.py</td><td>Administra carpetas de almacenamiento.</td><td>Ubicación de archivos cargados.</td></tr>
+                    <tr><td>operaciones.py</td><td>Guarda archivos y obtiene metadatos.</td><td>Tabla de información del archivo.</td></tr>
+                    <tr><td>__init__.py</td><td>Exporta funciones del módulo.</td><td>Integración interna.</td></tr>
+                  </tbody>
+                </table>
+                              </div>
+                                            <div id="item-archivos" className="scroll-section mb-4">
+
+                               <h4 className="text-primary">2.2 Carpeta Búsqueda</h4>
+                <p>Implementa algoritmos para localizar elementos dentro de arreglos.</p>
+                <table className="table table-bordered table-striped">
+                  <thead>
+                    <tr><th>Archivo</th><th>Descripción</th><th>Uso Front-End</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>busqueda_lineal.py</td><td>Recorre elementos secuencialmente.</td><td>Búsqueda paso a paso.</td></tr>
+                    <tr><td>busqueda_binaria.py</td><td>Divide el arreglo en mitades.</td><td>Visualización por rangos.</td></tr>
+                    <tr><td>hash.py</td><td>Tabla hash para búsqueda eficiente.</td><td>Tabla clave-valor.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+
+
               <hr className="frutiger-divider" />
               
               <div id="tema-arboles" className="scroll-section texto-justificado">
                 <h4 className="text-primary mt-4">3. Árboles Binarios</h4>
                 <p>Estructuras de datos no lineales y jerárquicas. Cada nodo padre puede tener como máximo dos hijos (izquierdo y derecho). Son fundamentales para búsquedas rápidas como en los árboles binarios de búsqueda (BST).</p>
+              </div>
+               <hr />
+
+<div className="info-card"> <h4>3.1 Carpeta arboles</h4>
+              <div id="tema-fusion" className="scroll-section texto-justificado">
+ <p>
+    La carpeta arboles contiene algoritmos relacionados con estructuras jerárquicas y conver
+sión de expresiones matemáticas. Incluye árboles binarios, árboles B, árboles B+ y conversión
+entre notaciones infija, prefija y sufija.
+  </p>
+                          </div>
+
               </div>
               <hr className="frutiger-divider" />
               
@@ -250,46 +357,95 @@ function App() {
                 <h4 className="text-primary mt-4">4. Estructuras de grafos</h4>
                 <p>Un conjunto de vértices (nodos) conectados a través de aristas (relaciones). Se pueden representar mediante matrices de adyacencia o listas de adyacencia, indispensables para redes y mapas.</p>
               </div>
+                            <hr />
+
+               <div id="item-grafos" className="scroll-section mb-4">
+                <h4 className="text-primary">4.1 Carpeta Grafos</h4>
+                <p>Representación y recorrido de grafos mediante BFS y DFS.</p>
+                <table className="table table-bordered table-striped">
+                  <thead>
+                    <tr><th>Archivo</th><th>Descripción</th><th>Uso Front-End</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>representacion.py</td><td>Matriz y lista de adyacencia.</td><td>Diagramas y tablas.</td></tr>
+                    <tr><td>bfs.py</td><td>Búsqueda en anchura.</td><td>Recorrido por niveles.</td></tr>
+                    <tr><td>dfs.py</td><td>Búsqueda en profundidad.</td><td>Exploración recursiva.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+
               <hr className="frutiger-divider" />
               
               <div id="tema-complejidad" className="scroll-section texto-justificado">
                 <h4 className="text-primary mt-4">5. Complejidad algorítmica</h4>
                 <p>Estudio del rendimiento de los algoritmos mediante la notación Big O ($O$). Nos permite evaluar la eficiencia temporal y espacial a medida que el tamaño de los datos de entrada ($n$) crece exponencialmente.</p>
               </div>
+              
             </div>
           </div>
 
         </div>
       </div>
 
-      <div id="documentacion" className="documentation-section section-offset mb-5">
-        <h3 className="section-title text-center mb-4">Documentación</h3>
-        <div className="row g-4">
-          <div className="col-md-6">
-            <div className="info-card">
-              <h4>Códigos</h4>
-              <p>En esta sección podremos agregar ejemplos de código sobre algoritmos</p>
-            </div>
-          </div>
-          <div className="col-md-6">
-            <div className="info-card">
-              <h4>Explicaciones</h4>
-              <p>Aquí podremos colocar documentación</p>
-            </div>
-          </div>
-        </div>
-      </div>
+     <div id="documentacion" className="documentation-section section-offset mb-5">
+  <h3 className="section-title text-center mb-4">Documentación</h3>
+  <div className="row g-4">
 
+    {/* COLUMNA: CÓDIGOS */}
+    <div className="col-md-6">
+      <div className="info-card">
+        <h4>Códigos</h4>
+        <p>En esta sección podremos agregar ejemplos de código sobre algoritmos</p>
+        
+        <a 
+          href="/docs/EDA2_Vol1_Codigo.pdf" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="frutiger-document-btn mt-3"
+        >
+          <img 
+            src="https://images.icon-icons.com/991/PNG/512/Windows7_icon-icons.com_75251.png" 
+            alt="Icono Códigos" 
+            className="document-btn-icon"
+          />
+          <span className="document-btn-text">Ver volumen 1 (códigos)</span>
+        </a>
+      </div>
+    </div>
+
+    {/* COLUMNA: EXPLICACIONES */}
+    <div className="col-md-6">
+      <div className="info-card">
+        <h4>Explicaciones</h4>
+        <p>Aquí podremos colocar documentación y marcos teóricos conceptuales</p>
+        
+        <a 
+          href="/docs/EDA2_Vol2_Marco_Teorico_1.pdf" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="frutiger-document-btn mt-3"
+        >
+          <img 
+            src="https://upload.wikimedia.org/wikipedia/commons/4/4f/Windows_7_Folder_Icon.png" 
+            alt="Icono Documento Teoría" 
+            className="document-btn-icon"
+          />
+          <span className="document-btn-text">Ver Volumen 2 (Teoría)</span>
+        </a>
+      </div>
+    </div>
+</div></div>
       <div id="nosotros" className="team-section section-offset mb-5">
         <h3 className="section-title text-center mb-4">Nosotros</h3>
         <div className="info-card text-center">
           <img src={miniRodri} alt="MiniRodri" className="chat-preview-img mb-3" style={{ width: '90px', height: 'auto' }} />
-          <h4>EQUIPO CONFORMADO POR:</h4>
-          <p> Alumnos de la Facultad de Ingeniería pertenecientes a la carrera de Ingeniería en Computación</p>
+          <h4>Equipo creador de MiniRodri</h4>
+          <p>En esta sección podremos agregar los nombres de los integrantes del equipo</p>
           <div className="team-placeholder">
-          
-            <p>Este fue un proyecto por nosotros, hecho para la materia de Estructura de datos y Algoritmos II <br />
-            </p>
+            <p><strong>Integrante 1:</strong> Nombre</p>
+            <p><strong>Integrante 2:</strong> Nombre</p>
+            <p><strong>Integrante 3:</strong> Nombre</p>
           </div>
         </div>
       </div>
