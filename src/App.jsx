@@ -102,7 +102,7 @@ function App() {
           </div>
 
           <button onClick={controlarMusica} className="btn-glossy-music px-3 py-1">
-            {musicaActiva ? '🎵 Pausar Música' : '🔇 Activar Música'}
+            {musicaActiva ? '🎵 Pausar música' : '🔇 Activar música'}
           </button>
 
           <div className="window-search">
@@ -114,9 +114,13 @@ function App() {
           </div>
         </div>
 
+        {/* Contenido Principal */}
         <div className="hero-content text-center" style={{ position: 'relative', zIndex: 5 }}>
           <img src={miniRodri} alt="MiniRodri" className="mini-rodri-main" />
-          <h1 className="main-title">MiniRodri <br /> EDA II</h1>
+          <h1 className="main-title">
+            MiniRodri <br />
+            <span className="sub-title"> Tú pequeño asistente interactivo en EDA II</span>
+          </h1>
           <p className="main-subtitle">
             Visualizador interactivo de algoritmos,
             estructuras de datos y chatbot inteligente.
@@ -156,8 +160,10 @@ function App() {
               Visualizador de <br />
               Estructuras de Datos
             </h1>
-            <p className="presentation-text">
-              <strong>Bienvenido a MiniRodri 🍏</strong>
+            <p className="presentation-text texto-justificado">
+              <div className="texto-centrado">
+                <strong>Bienvenido a MiniRodri 🍏</strong>
+              </div>
               <br />
             MiniRodri es un proyecto creado por estudiantes del grupo 6 de Estructuras de
             Datos y Algoritmos II, con el propósito de ayudar a comprender mejor los temas
@@ -173,47 +179,88 @@ function App() {
 
       <div id="algoritmos" className="container py-4 interactive-frutiger-index section-offset">
         <div className="glass-bubble-bg"></div>
-        <h3 className="section-title text-center text-primary-aero mb-4">Índice Temático Interactivo</h3>
+        <h3 className="section-title text-center text-primary-aero mb-4">Índice temático interactivo</h3>
         <div className="row g-4 align-items-stretch">
+          
+          {/* ⬅️ COLUMNA IZQUIERDA: MENÚ DE BOTONES */}
           <div className="col-md-4">
             <div className="frutiger-sidebar p-3 d-flex flex-column gap-2 justify-content-center h-100">
-              <h4 className="sidebar-title text-center mb-3">Temas Disponibles</h4>
-              <div id="simple-list-example" className="d-flex flex-column gap-3 frutiger-bubble-list">
-                <a className="frutiger-bubble-item active" href="#simple-list-item-1">• Ordenación por fusión</a>
-                <a className="frutiger-bubble-item" href="#simple-list-item-2">• Clasificación rápida</a>
-                <a className="frutiger-bubble-item" href="#simple-list-item-3">• Árboles Binarios</a>
-                <a className="frutiger-bubble-item" href="#simple-list-item-4">• Estructuras de Grafos</a>
-                <a className="frutiger-bubble-item" href="#simple-list-item-5">• Complejidad Algorítmica</a>
+              <h4 className="sidebar-title text-center mb-3">Temas disponibles</h4>
+              <div className="d-flex flex-column gap-3 frutiger-bubble-list">
+                
+                {/* 🌟 FUNCIÓN MANEJADORA DE SCROLL INTERNO ESTRICTO (PROHIBIDO MOVER LA PANTALLA) 🌟 */}
+{(() => {
+  const scrollAlTema = (e, idTema) => {
+    e.preventDefault(); // Detiene cualquier intento de mover la URL o la página
+    
+    // 1. Buscamos la cajita contenedora de la derecha (la que tiene el scrollbar)
+    const contenedorDerecho = document.querySelector('.frutiger-scrollspy');
+    // 2. Buscamos el elemento/tema específico al que queremos ir
+    const elementoDestino = document.getElementById(idTema);
+    
+    if (contenedorDerecho && elementoDestino) {
+      // Calculamos la posición exacta del tema respecto al contenedor
+      const posicionDestino = elementoDestino.offsetTop - contenedorDerecho.offsetTop;
+      
+      // Movemos el scroll INTRÍNSECO del contenedor sin tocar el resto de la pantalla
+      contenedorDerecho.scrollTo({
+        top: posicionDestino - 15, // El -15 es el margen de respeto arriba para que no se pegue al techo
+        behavior: 'smooth'
+      });
+    }
+  };
+
+  return (
+    <>
+      <a className="frutiger-bubble-item" href="#" onClick={(e) => scrollAlTema(e, 'tema-fusion')}>• Ordenación por fusión</a>
+      <a className="frutiger-bubble-item" href="#" onClick={(e) => scrollAlTema(e, 'tema-rapida')}>• Clasificación rápida</a>
+      <a className="frutiger-bubble-item" href="#" onClick={(e) => scrollAlTema(e, 'tema-arboles')}>• Árboles Binarios</a>
+      <a className="frutiger-bubble-item" href="#" onClick={(e) => scrollAlTema(e, 'tema-grafos')}>• Estructuras de grafos</a>
+      <a className="frutiger-bubble-item" href="#" onClick={(e) => scrollAlTema(e, 'tema-complejidad')}>• Complejidad algorítmica</a>
+    </>
+  );
+})()}
+
               </div>
             </div>
           </div>
+
+          {/* ➡️ COLUMNA DERECHA: CAJA CON SCROLL INTERNO */}
           <div className="col-md-8">
-            <div 
-              data-bs-spy="scroll" 
-              data-bs-target="#simple-list-example" 
-              data-bs-offset="0" 
-              data-bs-smooth-scroll="true" 
-              className="frutiger-scrollspy bg-light p-4 rounded shadow-sm border border-light-subtle h-100" 
-              tabIndex="0"
-              style={{ overflowY: 'auto', position: 'relative' }}
-            >
+            <div className="frutiger-scrollspy bg-light p-4 rounded shadow-sm border border-light-subtle">
               <div className="scrollspy-glossy-overlay"></div>
-              <h4 id="simple-list-item-1" className="text-primary mt-2">1. Ordenación por fusión</h4>
-              <p>Es un algoritmo de ordenamiento basado en la técnica de <em>Divide y Vencerás</em>. Divide el arreglo recursivamente a la mitad hasta tener subarreglos de tamaño 1, para luego fusionarlos (merge) de manera ordenada en tiempo lineal $O(n \log n)$.</p>
+              
+              <div id="tema-fusion" className="scroll-section texto-justificado">
+                <h4 className="text-primary mt-2">1. Ordenación por fusión</h4>
+                <p>Es un algoritmo de ordenamiento basado en la técnica de <em>Divide y Vencerás</em>. Divide el arreglo recursivamente a la mitad hasta tener subarreglos de tamaño 1, para luego fusionarlos (merge) de manera ordenada en tiempo lineal $O(n \log n)$.</p>
+              </div>
               <hr className="frutiger-divider" />
-              <h4 id="simple-list-item-2" className="text-primary mt-4">2. Clasificación rápida</h4>
-              <p>Otro algoritmo clásico de ordenamiento que utiliza un elemento llamado "pivote" para particionar la estructura. Coloca los menores a un lado y los mayores al otro, repitiendo el proceso de manera recursiva.</p>
+              
+              <div id="tema-rapida" className="scroll-section texto-justificado">
+                <h4 className="text-primary mt-4">2. Clasificación rápida</h4>
+                <p>Otro algoritmo clásico de ordenamiento que utiliza un elemento llamado "pivote" para particionar la estructura. Coloca los menores a un lado y los mayores al otro, repitiendo el proceso de manera recursiva.</p>
+              </div>
               <hr className="frutiger-divider" />
-              <h4 id="simple-list-item-3" className="text-primary mt-4">3. Árboles Binarios</h4>
-              <p>Estructuras de datos no lineales y jerárquicas. Cada nodo padre puede tener como máximo dos hijos (izquierdo y derecho). Son fundamentales para búsquedas rápidas como en los árboles binarios de búsqueda (BST).</p>
+              
+              <div id="tema-arboles" className="scroll-section texto-justificado">
+                <h4 className="text-primary mt-4">3. Árboles Binarios</h4>
+                <p>Estructuras de datos no lineales y jerárquicas. Cada nodo padre puede tener como máximo dos hijos (izquierdo y derecho). Son fundamentales para búsquedas rápidas como en los árboles binarios de búsqueda (BST).</p>
+              </div>
               <hr className="frutiger-divider" />
-              <h4 id="simple-list-item-4" className="text-primary mt-4">4. Estructuras de Grafos</h4>
-              <p>Un conjunto de vértices (nodos) conectados a través de aristas (relaciones). Se pueden representar mediante matrices de adyacencia o listas de adyacencia, indispensables para redes y mapas.</p>
+              
+              <div id="tema-grafos" className="scroll-section texto-justificado">
+                <h4 className="text-primary mt-4">4. Estructuras de grafos</h4>
+                <p>Un conjunto de vértices (nodos) conectados a través de aristas (relaciones). Se pueden representar mediante matrices de adyacencia o listas de adyacencia, indispensables para redes y mapas.</p>
+              </div>
               <hr className="frutiger-divider" />
-              <h4 id="simple-list-item-5" className="text-primary mt-4">5. Complejidad Algorítmica</h4>
-              <p>Estudio del rendimiento de los algoritmos mediante la notación Big O ($O$). Nos permite evaluar la eficiencia temporal y espacial a medida que el tamaño de los datos de entrada ($n$) crece exponencialmente.</p>
+              
+              <div id="tema-complejidad" className="scroll-section texto-justificado">
+                <h4 className="text-primary mt-4">5. Complejidad algorítmica</h4>
+                <p>Estudio del rendimiento de los algoritmos mediante la notación Big O ($O$). Nos permite evaluar la eficiencia temporal y espacial a medida que el tamaño de los datos de entrada ($n$) crece exponencialmente.</p>
+              </div>
             </div>
           </div>
+
         </div>
       </div>
 
@@ -254,15 +301,19 @@ function App() {
           <div className="chat-preview-card p-4 text-center bg-light rounded shadow-sm border border-light-subtle">
             <img src={miniRodri} alt="MiniRodri" className="chat-preview-img mb-2" style={{ width: '65px', height: 'auto' }} />
             <h4 className="chat-preview-title fw-bold text-primary mb-2">¿Necesitas ayuda con EDA II?</h4>
-            <p className="chat-preview-text text-muted mb-3">
+            <p className="chat-preview-text text-muted mb-3 texto-centrado">
               MiniRodri puede guiarte de forma interactiva con los siguientes temas:
             </p>
+            
             <div className="d-flex flex-wrap gap-2 justify-content-center mb-4">
-              <button className="btn btn-primary px-3 shadow-sm">Ver algoritmos</button>
-              <button className="btn btn-info text-white px-3 shadow-sm">Árboles</button>
-              <button className="btn btn-success px-3 shadow-sm">Grafos</button>
-              <button className="btn btn-warning text-white px-3 shadow-sm">Clasificación</button>
+              {/* 🌟 Añadida la clase 'etiqueta-estatica' para congelarlos al 100% */}
+              <span className="btn btn-primary px-3 shadow-sm etiqueta-estatica">Algoritmos</span>
+              <span className="btn btn-info text-white px-3 shadow-sm etiqueta-estatica">Árboles</span>
+              <span className="btn btn-success px-3 shadow-sm etiqueta-estatica">Grafos</span>
+              <span className="btn btn-warning text-white px-3 shadow-sm etiqueta-estatica">Clasificación</span>
             </div>
+            
+            {/* 🚀 BOTÓN REAL INTERACTIVO: Conserva la etiqueta <button> para que sí salga la manita al pasar el cursor */}
             <button
               className="btn btn-primary btn-lg open-chat-btn w-100 fw-bold shadow"
               style={{ maxWidth: '400px', margin: '0 auto' }}
@@ -270,9 +321,11 @@ function App() {
             >
               Abrir Asistente Inteligente
             </button>
+            
           </div>
         </div>
       </div>
+      
 
       {!chatAbierto && (
         <button className="floating-chat-button" onClick={() => setChatAbierto(true)}>
@@ -348,3 +401,4 @@ function App() {
 }
 
 export default App;
+
