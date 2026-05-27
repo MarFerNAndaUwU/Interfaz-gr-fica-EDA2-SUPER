@@ -355,14 +355,6 @@ function App() {
               <p className="small">¿Qué necesitas aprender hoy?</p>
             </div>
 
-            <div className="d-grid gap-2 mb-3">
-              <button className="btn btn-primary btn-sm">Ver algoritmos</button>
-              <button className="btn btn-info btn-sm text-white">Pregunta sobre un algoritmo</button>
-              <button className="btn btn-success btn-sm">Funcionamiento de estructuras</button>
-              <button className="btn btn-warning btn-sm text-white">¿Quiénes somos?</button>
-              <button className="btn btn-secondary btn-sm">Otra pregunta</button>
-            </div>
-
             <div className="chat-history">
               {chatLog.map((chat, index) => (
                 <div
