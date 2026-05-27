@@ -110,13 +110,6 @@ function App() {
             {musicaActiva ? '🎵 Pausar música' : '🔇 Activar música'}
           </button>
 
-          <div className="window-search">
-            <input
-              type="text"
-              placeholder="Buscar algoritmos..."
-              className="form-control"
-            />
-          </div>
         </div>
 
         {/* Contenido Principal */}
@@ -291,15 +284,12 @@ function App() {
         <h3 className="section-title text-center mb-4">Nosotros</h3>
         <div className="info-card text-center">
           <img src={miniRodri} alt="MiniRodri" className="chat-preview-img mb-3" style={{ width: '90px', height: 'auto' }} />
-          <h4>Equipo creador de MiniRodri</h4>
-          <p>En esta sección podremos agregar los nombres de los integrantes del equipo</p>
+          <h4>EQUIPO CONFORMADO POR:</h4>
+          <p> Alumnos de la Facultad de Ingeniería pertenecientes a la carrera de Ingeniería en Computación</p>
           <div className="team-placeholder">
           
-            <p><strong>Integrante 1:</strong> Casanova Cortina America Daniela</p>
-            <p><strong>Integrante 2:</strong> Cecilio Alejandro Carlos Didier</p>
-            <p><strong>Integrante 3:</strong> González Baca María Fernanda</p>
-            <p><strong>Integrante 4:</strong> Soriano Nievas Andres</p>
-            <p><strong>Integrante 5:</strong> Toledo Reyes Vania</p>
+            <p>Este fue un proyecto por nosotros, hecho para la materia de Estructura de datos y Algoritmos II <br />
+            </p>
           </div>
         </div>
       </div>
